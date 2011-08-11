@@ -16,11 +16,6 @@ var metrorail = {
                           {'incidents': [{'Description':'Test alert.',
                                           'LinesAffectedArr': ['RD']}]});
 
-        /*{'Description':'Alert.',
-          'LinesAffectedArr': ['RD', 'YL', 'GR']},
-          */
-
-
         $("#incidents").marquee({yScroll: "bottom", pauseSpeed: 1500, scrollSpeed: 10, pauseOnHover: false,
                                  beforeshow: function ($marquee, $li) {
                                      var lines = $li.find(".lines");
@@ -48,12 +43,22 @@ var metrorail = {
         
         numTrains = Math.floor(availableSpace/oneRow);
 
-        console.log("marquee done");
+        socket.emit('set trains', config.rtu, function(data) {
+            stationName = data.name;
+            finishInit();
+        });
 
-        socket.emit('set buses', config.stops);
+        function finishInit() {
+            updateTrains(socket);
+            updateIncidents(socket);
+            
+            setInterval(function(){updateTrains(socket);}, 20000);
+            setInterval(function(){updateIncidents(socket);}, 150000);
+
+        };
 
         function updateTrains(socket) {
-            socket.emit('get trains', config.rtu, -2, function (response) {
+            socket.emit('get trains', -2, function (response) {
                 soy.renderElement($('#railpredictions tbody')[0], 
                                   metrorail.predictions, 
                                   {'predictions': response.trains.slice(0, numTrains)});  
@@ -94,12 +99,6 @@ var metrorail = {
         function updateIncidents(socket) {
             socket.emit('get incidents', setIncidents);
         }
-
-        updateTrains(socket);
-        updateIncidents(socket);
-
-        setInterval(function(){updateTrains(socket);}, 20000);
-        setInterval(function(){updateIncidents(socket);}, 150000);
     },
     onShow: function() {
         //start marquee,
@@ -109,6 +108,8 @@ var metrorail = {
         //stop marquee
         $("#incidents").marquee("pause");
     },
-    title: function() {return 'Metrorail';},
+    title: function() {return stationName;},
 
 };
+
+var stationName = 'Metrorail';
