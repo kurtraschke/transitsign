@@ -1,0 +1,18 @@
+{namespace bus}
+
+/**
+ * Render the bus predictions container.
+ * @param buses Bus predictions
+ */
+{template .main}
+{foreach $bus in $buses}
+<div class="busprediction">
+<div class="minutes">{$bus.Minutes}</div>       
+<div>
+<span class="route">{$bus.Agency} {$bus.RouteID}</span><br>
+{$bus.StopName}<br>
+{$bus.DirectionText}
+</div>
+</div>
+{/foreach}
+{/template}

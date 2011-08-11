@@ -1,0 +1,21 @@
+Server:
+
+* Logging! (use winston and winston-mongodb)
+* Sometimes we send an empty document to MongoDB, and this upsets it.  Fix.
+* Proper packaging: the modules we need are async, express, mongoskin, redmark, request, socket.io, xml2js.
+
+Client:
+
+* High priority: better font.  Helvetica may seem appropriate, but it's actually bad for
+  signage applications like this as it's prone to halation
+
+* More robust marquee.
+* Fix reconnect bug.
+* When disconnected, we should have a full-screen overlay saying "sign out of service" with some explanatory text.
+* Related: the server should have a way to tell the client that data has gone stale.
+* Improve configuration mechanism.
+
+Both:
+
+* CoffeeScript?  Is it worth it?
+* If not, at least compile/minify the JS.

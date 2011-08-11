@@ -1,0 +1,76 @@
+{namespace metrorail}
+
+/**
+ * Render the Metrorail container.
+ */
+{template .main}
+<table id="railpredictions">
+<thead>
+  <tr><td>LN</td><td>CAR</td><td>DEST</td><td>MIN</td></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+<div id="incidentcontainer">
+<div id="lines"></div>
+<ul id="incidents">
+</ul>
+</div>
+{/template}
+
+
+/**
+ * Render Metrorail predictions.
+ * @param predictions Metrorail predictions.
+ */
+{template .predictions}
+{foreach $prediction in $predictions}
+<tr><td class="{$prediction.Line|id}">{$prediction.Line}</td><td>{$prediction.Car}</td>
+<td><span class="dest">{$prediction.DestinationName}</span></td><td {call .timeClass}{param time: $prediction.Min /}{/call}>{call .time}{param time: $prediction.Min /}{/call}</td></tr>
+{/foreach}
+{/template}
+
+/**
+ * Render Metrorail incidents.
+ * @param incidents Metrorail incidents.
+ */
+{template .incidents}
+{foreach $incident in $incidents}
+<li><span class="lines">{call .lines}{param lines: $incident.LinesAffectedArr /}{/call} Alert: </span>{$incident.Description}</li>
+{/foreach}
+{/template}
+
+/**
+ * Render Metrorail lines in incident marquee.
+ * @param lines Metrorail lines affected.
+ */
+{template .lines}
+{foreach $line in $lines}
+<span class="{$line|id}">{$line}</span>{if not isLast($line)}, {/if}
+{/foreach}
+{/template}
+
+/**
+ * Render Metrorail prediction time.
+ * @param time Prediction time.
+ */
+{template .time}
+{if $time == -2}
+BRD
+{elseif $time == -1}
+ARR
+{else}
+{$time}
+{/if}
+{/template}
+
+/**
+ * Render Metrorail prediction time class.
+ * @param time Prediction time.
+ */
+{template .timeClass}
+{if $time < 0}
+class="flash"
+{/if}
+{/template}

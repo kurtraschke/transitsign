@@ -1,0 +1,15 @@
+{namespace cabi}
+
+/**
+ * Render the Capital Bikeshare status container.
+ * @param stations CaBi stations
+ */
+{template .main}
+{foreach $station in $stations}
+<div class="cabistation">
+<div class="stationtitle">{$station.name}</div>       
+Bikes available: {$station.nbBikes}<br>
+Docks available: {$station.nbEmptyDocks}
+</div>
+{/foreach}
+{/template}

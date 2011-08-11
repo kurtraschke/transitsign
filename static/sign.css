@@ -1,0 +1,199 @@
+body {
+    font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+    font-size: 62.5%;
+    background: black;
+    color: white;
+
+}
+
+#wx {
+    float: right;
+    text-align: right;
+    font-size: 0.5em;
+}
+
+table {
+    font-size: 6em;
+}
+
+.dest {
+    font-size: 0.7em;
+    white-space: nowrap;
+}
+
+td:not(:first-child) {
+    padding-left: 0.8em;
+}
+
+td:not(:last-child) {
+    padding-right: 0.8em;
+}
+
+thead tr td:last-child {
+    padding-right: 0.5em;
+}
+
+
+
+#lines {
+    float: left;
+    padding-top: 0.25em;
+    padding-right: 0.25em;
+    font-size: 4.5em;
+}
+
+#incidents {
+    display: block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    line-height: 1;
+    position: relative;
+    overflow: hidden;
+    height: 6em;
+}
+
+#incidents li {
+    position: absolute;
+    top: -999em;
+    left: 0;
+    display: block;
+    white-space: nowrap;
+    padding-top: 0.25em;
+    font-size: 4.5em;
+}
+
+#incidents li .lines {
+    display: none;
+}
+
+.flash {
+    color: red;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-name: fader;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    -moz-animation-duration: 2s;
+    -moz-animation-name: fader;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-direction: alternate;
+
+}
+  
+@-webkit-keyframes fader {
+    from {
+        opacity: 1.0
+    }
+    
+    70% {
+        opacity: 1.0
+    }
+
+    to {
+        opacity: 0.6
+    }
+}
+
+@-moz-keyframes fader {
+    from {
+        opacity: 1.0
+    }
+    
+    70% {
+        opacity: 1.0
+    }
+
+    to {
+        opacity: 0.6
+    }
+}
+
+.GR {
+    color: #009D57;
+}
+
+.RD {
+    color: #E94333;
+}
+
+.BL {
+    color: #0D7BBA;
+}
+
+.OR {
+    color: #F89038;
+}
+
+.YL {
+    color: #FDE310;
+}
+
+#header {
+    padding-bottom: 0.5em;
+    font-size: 6em;
+
+}
+
+#icons {
+    top: 0em;
+    float:left;
+    position:fixed;
+    left: 50%;
+}
+
+#header img {
+    position: relative;
+    left: -50%;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+
+#incidentcontainer {
+    position: fixed;
+    bottom: 1em;
+    width: 100%;<div class="minutes">{$bus.Minutes}</div>       
+}
+
+#header img {
+    height: 0.5em;
+    vertical-align:middle;
+}
+
+#header img.active {
+    height: 1.0em;
+}
+
+#bus .busprediction {
+    font-size: 2em;
+    width: 50%;
+    float: left;
+}
+
+#bus .busprediction .route {
+    font-size: 1.8em;
+}
+
+
+#bus .busprediction div {
+    width: 80%;
+    margin-bottom: 0.5em;
+}
+
+#bus .busprediction .minutes {
+    width: 20%;
+    text-align: center;
+    font-size: 2em;
+    line-height: 1.5em;
+    float: right;
+}
+
+
+#cabi .cabistation .stationtitle {
+    font-size: 2em;
+    line-height: 1.2em;
+}
+
+#cabi .cabistation {
+    font-size: 3em;
+    margin-bottom: 1em;
+}
