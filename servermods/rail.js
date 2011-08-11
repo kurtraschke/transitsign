@@ -1,3 +1,5 @@
+var winston = require('winston');
+
 exports.configure = configure;
 
 function configure(db, socket) {
@@ -20,7 +22,7 @@ function configure(db, socket) {
                                      callback({'name': station.Name});
 
                                  } else {
-                                     console.log("ERR: "+err);
+                                     winston.error("Error getting rail station information", err);
                                  }
                              });
     });
@@ -28,6 +30,7 @@ function configure(db, socket) {
 
     socket.on('get trains', function (minutes, callback) {
         socket.get('rtus', function(err, rtus) {
+            if (!err) {
             var collection = db.collection('trains');
             collection.findItems({"LocationCode": {"$in": rtus}, "Min": {"$gte": minutes}},
                                  {"Car":1, "DestinationName":1, "Line":1, "Min":1, "_id":0},
@@ -36,9 +39,12 @@ function configure(db, socket) {
                                      if (!err) {
                                          callback({trains: items});
                                      } else {
-                                         console.log("ERR: "+err);
+                                         winston.error("Error querying for rail predictions", err);
                                      }
                                  }); 
+            } else {
+                winston.error("Error getting rail information for socket", err);
+            }        
         });
     });
     
@@ -50,7 +56,7 @@ function configure(db, socket) {
                                  if (!err) {
                                      callback({incidents: items});
                                  } else {
-                                     console.log("ERR: "+err);
+                                         winston.error("Error querying for rail incidents", err);
                                  }
                              });    
     });

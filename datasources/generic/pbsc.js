@@ -5,7 +5,7 @@ var async = require('async');
 
 exports.updatePBSC = updatePBSC;
 
-function updatePBSC(db, url) {
+function updatePBSC(db, url, callback) {
     async.waterfall([
         function(callback) {
             rlrequest.request_limited({uri:url},
@@ -34,25 +34,24 @@ function updatePBSC(db, url) {
 
                 stationsOut.push(station);
             }
-
+            callback(null, stationsOut);
+        },
+        function(stationsOut, callback) {
             var collection = db.collection('cabi');
 
-            async.series([
-                function(callback) {
-                    collection.remove({},{"safe":true}, callback);
-                },
-                function(callback) {
-                    collection.insert(stationsOut, {"safe":true}, callback);
-                }],
-                         function(err, results) {
-                             if (err) {
-                                 callback(err);
-                             } else {
-                                 callback(null);
-                             }
-                         });
-
+            async.series(
+                [
+                    function(callback) {
+                        collection.remove({},{"safe":true}, callback);
+                    },
+                    function(callback) {
+                        collection.insert(stationsOut, {"safe":true}, callback);
+                    }
+                ],
+                function(err, results) {
+                    callback(err);
+                });
+            
         }
-    ]);
-
+    ], callback);
 }

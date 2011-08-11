@@ -9,7 +9,7 @@ function url_for_stop(agency_id, stop_id) {
     return "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a="+agency_id+"&stopId="+stop_id;
 }
 
-function updateNextBusPredictions(db, agency, agency_id, stop_id) {
+function updateNextBusPredictions(db, agency, agency_id, stop_id, callback) {
     async.waterfall([
         function(callback) {
             rlrequest.request_limited({uri:url_for_stop(agency_id, stop_id)},
@@ -69,26 +69,29 @@ function updateNextBusPredictions(db, agency, agency_id, stop_id) {
                     }
                 }                    
             }
-            
+
+            callback(null, tripsOut);
+        },
+        function(tripsOut, callback) {
             var collection = db.collection('bus_predictions');
-
-            async.series([
-                function(callback) {
-                    collection.remove({"StopID": stop_id,
-                                       "Agency": agency}, {"safe":true}, callback);
-                },
-                function(callback) {
-                    collection.insert(tripsOut, {"safe":true}, callback);
-                }],
-                         function(err, results) {
-                             if (err) {
-                                 callback(err);
-                             } else {
-                                 callback(null);
-                             }
-                         });
-
+            
+            async.series(
+                [
+                    function(callback) {
+                        collection.remove({"StopID": stop_id,
+                                           "Agency": agency}, {"safe":true}, callback);
+                    },
+                    function(callback) {
+                        if (tripsOut.length > 0) {
+                            collection.insert(tripsOut, {"safe":true}, callback);
+                        } else {
+                            callback(null);
+                        }
+                    }
+                ],
+                function(err, results) {
+                    callback(err);
+                });
         }
-    ]);
-
+    ], callback);
 }

@@ -1,3 +1,5 @@
+var winston = require('winston');
+
 exports.configure = configure;
 
 function configure(db, socket) {
@@ -9,6 +11,7 @@ function configure(db, socket) {
     
     socket.on('get weather', function(callback) {
         socket.get('wx', function(err, station_id) {
+            if (!err) {
             var collection = db.collection('wx_obs');
             collection.findItems({"station_id": station_id},
                                  {"temp_f": 1, "weather": 1, "_id": 0},
@@ -16,9 +19,12 @@ function configure(db, socket) {
                                      if (!err) {
                                          callback({wx: items});
                                      } else {
-                                         console.log("ERR: "+err);
+                                         winston.error("Error querying for weather", err);
                                      }
                                  });
+            } else {
+                winston.error("Error getting weather station for socket", err);
+            }
         });
     });
     

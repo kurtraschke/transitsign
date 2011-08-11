@@ -1,4 +1,5 @@
 var async = require('async');
+var winston = require('winston');
 
 var SECOND = 1000;
 var MINUTE = 60;
@@ -21,15 +22,17 @@ function updateWeather(db) {
                                  async.forEachSeries(items,
                                                      function(item, callback) {
                                                          var station_id = item.station_id;
-                                                         console.log("Updating weather for station ID "+station_id);
-                                                         require('./datasources/wx').updateWX(db, station_id);
-                                                         callback();
+                                                         winston.info("Updating weather for station ID "+station_id);
+                                                         require('./datasources/wx').updateWX(db, station_id, callback);
                                                      },
                                                      function(err){
                                                          if (err) {
-                                                             console.log("error: " + err);
+                                                             winston.error("Error updating weather",
+                                                                           err);
                                                          }
                                                      });
+                             } else {
+                                 winston.error("Error getting weather subscriptions", err);
                              }
                          });
 }
@@ -46,14 +49,14 @@ function updateBuses(db) {
                              if (!err) {
                                  async.forEachSeries(items,
                                                      function(item, callback) {
-                                                         console.log("Updating "+item.Agency+" "+item.StopID)
+                                                         winston.info("Updating "+item.Agency+" "+item.StopID)
                                                          var updateFunction = agencyMap[item.Agency];
-                                                         updateFunction(db, item.StopID);
-                                                         callback();
+                                                         updateFunction(db, item.StopID, callback);
                                                      },
                                                      function(err){
                                                          if (err) {
-                                                             console.log("error: "+err);
+                                                             winston.error("Error updating bus predictions",
+                                                                           err);
                                                          }
                                                      });
                              }
@@ -61,18 +64,30 @@ function updateBuses(db) {
 }
 
 function updateCabi(db) {
-    console.log("Updating Capital Bikeshare");
-    require('./datasources/cabi').updateCabi(db);
+    winston.info("Updating Capital Bikeshare");
+    require('./datasources/cabi').updateCabi(db, function(err) {
+        if (err) {
+            winston.error("Error updating Capital Bikeshare", err);
+        }
+    });
 }
 
 function updateTrains(db) {
-    console.log("Updating Metrorail predictions");
-    require('./datasources/metrorail').updateTrains(db);
+    winston.info("Updating Metrorail predictions");
+    require('./datasources/metrorail').updateTrains(db, function(err) {
+        if (err) {
+            winston.error("Error updating Metrorail predictions", err);
+        }
+    });
 }
 
 function updateIncidents(db) {
-    console.log("Updating Metrorail incidents");
-    require('./datasources/metrorail').updateIncidents(db);
+    winston.info("Updating Metrorail incidents");
+    require('./datasources/metrorail').updateIncidents(db, function(err) {
+        if (err) {
+            winston.error("Error updating Metrorail predictions", err);
+        }
+    });
 }
 
 function startUpdates(db, updateFunction, interval) {

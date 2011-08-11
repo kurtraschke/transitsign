@@ -5,7 +5,7 @@ var rlrequest = require('../rlrequest');
 
 exports.updateConnexionzPredictions = updateConnexionzPredictions;
 
-function updateConnexionzPredictions(db, agency, url, stop_id) {
+function updateConnexionzPredictions(db, agency, url, stop_id, callback) {
     async.waterfall([
         function(callback) {
             rlrequest.request_limited({uri:url + stop_id},
@@ -64,25 +64,28 @@ function updateConnexionzPredictions(db, agency, url, stop_id) {
                 }
             }
 
+            callback(null, tripsOut);
+        },
+        function (tripsOut, callback) {
             var collection = db.collection('bus_predictions');
 
-            async.series([
-                function(callback) {
-                    collection.remove({"StopID": stop_id,
-                                       "Agency": agency}, {"safe":true}, callback);
-                },
-                function(callback) {
-                    collection.insert(tripsOut, {"safe":true}, callback);
-                }],
-                         function(err, results) {
-                             if (err) {
-                                 callback(err);
-                             } else {
-                                 callback(null);
-                             }
-                         });
-
+            async.series(
+                [
+                    function(callback) {
+                        collection.remove({"StopID": stop_id,
+                                           "Agency": agency}, {"safe":true}, callback);
+                    },
+                    function(callback) {
+                        if (tripsOut.length > 0) {
+                            collection.insert(tripsOut, {"safe":true}, callback);
+                        } else {
+                            callback(null);
+                        }
+                    }
+                ],
+                function(err, results) {
+                    callback(err);
+                });
         }
-    ]);
-
+    ], callback);
 }
