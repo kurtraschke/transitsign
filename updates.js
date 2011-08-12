@@ -22,8 +22,11 @@ function updateWeather(db) {
                            async.forEachSeries(items,
                            function(item, callback) {
                              var station_id = item.station_id;
-                             winston.info('Updating weather for station ID ' + station_id);
-                             require('./datasources/wx').updateWX(db, station_id, callback);
+                             winston.info('Updating weather for station ID ' +
+                                          station_id);
+                             require('./datasources/wx').updateWX(db,
+                                                                  station_id,
+                                                                  callback);
                            },
                            function(err) {
                              if (err) {
@@ -36,9 +39,11 @@ function updateWeather(db) {
                        });
 }
 
-var agencyMap = {'Metrobus': require('./datasources/metrobus').updateMetrobusPredictions,
+var agencyMap = {
+  'Metrobus': require('./datasources/metrobus').updateMetrobusPredictions,
   'ART': require('./datasources/art').updateARTPredictions,
-  'DC Circulator': require('./datasources/circulator').updateCirculatorPredictions};
+  'DC Circulator': require('./datasources/circulator').updateCirculatorPredictions
+};
 
 function updateBuses(db) {
   var collection = db.collection('stop_subscriptions');
@@ -97,7 +102,8 @@ function startUpdates(db, updateFunction, interval) {
 
 function periodicUpdates(db) {
   var railPredUpdates = startUpdates(db, updateTrains, 20 * SECOND);
-  var railIncidentUpdates = startUpdates(db, updateIncidents, 1 * MINUTE * SECOND);
+  var railIncidentUpdates = startUpdates(db, updateIncidents,
+                                         1 * MINUTE * SECOND);
   var busPredUpdates = startUpdates(db, updateBuses, 1 * MINUTE * SECOND);
   var cabiUpdates = startUpdates(db, updateCabi, 2 * MINUTE * SECOND);
   var weatherUpdates = startUpdates(db, updateWeather, 30 * MINUTE * SECOND);

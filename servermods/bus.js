@@ -8,9 +8,11 @@ exports.init = init;
 
 function init(db, callback) {
   async.series([
-    function(callback) {
+    //We don't currently use the stops collection,
+    //so there's no reason to update it.
+    /*function(callback) {
       wmatastatic.updateStops(db, callback);
-    },
+    },*/
     function(callback) {
       db.collection('stop_subscriptions').remove({},{'safe': true}, callback);
     }

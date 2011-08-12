@@ -2,7 +2,9 @@ Server:
 
 * Proper packaging: the modules we need are async, express, mongoskin, redmark, request, socket.io, xml2js, winston, winston-mongodb
 * Wherever we use xml2js, we need a parser.on('error', ...) call.
+* Capped collection for logs.
 * Add user interface for viewing logs.
+* MongoDB indexes.
 
 Client:
 
