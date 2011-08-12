@@ -1,6 +1,13 @@
 var winston = require('winston');
 
+var wmatastatic = require('../datasources/wmatastatic');
+
 exports.configure = configure;
+exports.init = init;
+
+function init(db, callback) {
+    wmatastatic.updateStations(db, callback);
+}
 
 function configure(db, socket) {
     socket.on('set trains', function(rtu, callback) {

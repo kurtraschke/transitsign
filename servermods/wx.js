@@ -1,6 +1,11 @@
 var winston = require('winston');
 
 exports.configure = configure;
+exports.init = init;
+
+function init(db, callback) {
+    db.collection('wx_subscriptions').remove({},{"safe":true}, callback);
+}
 
 function configure(db, socket) {
 

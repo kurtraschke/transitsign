@@ -1,13 +1,14 @@
-var request = require('request');
-var mongo = require('mongoskin');
 var async = require('async');
 
-var db = mongo.db('localhost:27017/testdb');
+var rlrequest = require('./rlrequest');
+var wmata_api_key = require('../wmatakey').api_key;
 
-var wmata_api_key = "";
+exports.updateStations = updateStations;
+exports.updateStops = updateStops;
 
-function updateStations() {
-    request({uri:'http://api.wmata.com/Rail.svc/json/JStations?api_key='+wmata_api_key},
+function updateStations(db, callback) {
+    var url = 'http://api.wmata.com/Rail.svc/json/JStations?api_key='+wmata_api_key;
+    rlrequest.request_limited({uri: url},
             function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var parsed = JSON.parse(body);
@@ -20,18 +21,16 @@ function updateStations() {
                         },
                         function(callback) {
                             collection.insert(stations, {"safe":true}, callback);
-                        }],
-                                 function(err, results) {
-                                     if (err) {
-                                         console.log(err);
-                                     }
-                                 });
+                        }], callback);
+                } else {
+                    callback(err);
                 }
             });
 }
 
-function updateStops() {
-    request({uri:'http://api.wmata.com/Bus.svc/json/JStops?api_key='+wmata_api_key},
+function updateStops(db, callback) {
+    var url = 'http://api.wmata.com/Bus.svc/json/JStops?api_key='+wmata_api_key;
+    rlrequest.request_limited({uri: url},
             function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     var parsed = JSON.parse(body);
@@ -44,12 +43,9 @@ function updateStops() {
                         },
                         function(callback) {
                             collection.insert(stops, {"safe":true}, callback);
-                        }],
-                                 function(err, results) {
-                                     if (err) {
-                                         console.log(err);
-                                     }
-                                 });
+                        }], callback);
+                } else {
+                    callback(err);
                 }
             });
 }

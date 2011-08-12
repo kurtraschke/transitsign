@@ -1,6 +1,21 @@
 var winston = require('winston');
+var async = require('async');
+
+var wmatastatic = require('../datasources/wmatastatic');
 
 exports.configure = configure;
+exports.init = init;
+
+function init(db, callback) {
+    async.series([
+        function(callback) {
+            wmatastatic.updateStops(db, callback);
+        },
+        function(callback) {
+            db.collection('stop_subscriptions').remove({},{"safe":true}, callback);
+        }
+    ], callback);
+}
 
 function configure(db, socket) {
     socket.on('set buses', function(buses, callback) {

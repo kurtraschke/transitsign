@@ -1,6 +1,5 @@
 Server:
 
-* On startup, clear the subscription collections, and refetch the Metrorail static data.
 * Proper packaging: the modules we need are async, express, mongoskin, redmark, request, socket.io, xml2js, winston, winston-mongodb
 * Wherever we use xml2js, we need a parser.on('error', ...) call.
 * Add user interface for viewing logs.
