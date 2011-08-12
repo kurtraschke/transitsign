@@ -18,7 +18,7 @@ $(document).ready(function() {
 
   setInterval(function() {
     var clock = $('.clock').first();
-    clock.html(strftime('%I:%M %p'));
+    clock.html(strftime('%l:%M %p'));
   }, 1000);
 
   var slidecontainer = $('#slidecontainer');
