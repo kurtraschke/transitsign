@@ -27,6 +27,7 @@ var metrorail = {
       }
     });
 
+    $('#incidents').data('state','running');
 
     var newsize, dh, oneRow, empx, estCrawlHeight,
         availableSpace, error, numTrains;
@@ -69,37 +70,18 @@ var metrorail = {
       });
     }
 
-    //TODO: make this all considerably less of a hack.
-    //See also jquery.marquee.js line 142.
-    //In short: the marquee stops working if all of the old elements are
-    //removed and replaced at once.
-    //It also stops working if there are no elements within.
-    //So we perform the update in three main steps:
-    //Mark the old elements for removal
-    //Add the new elements, or a dummy (empty) element.
-    //Tell the marquee to update itself, remove the old elements,
-    //and tell the marquee to update itself again.
-    //Despite all this, the update appears seamless to the user,
-    //and it all still works.
-    var setIncidents = function(response) {
+    function setIncidents(response) {
       $('#incidents').marquee('pause');
       $('#lines').html('');
-      var old = $('#incidents li').addClass('delete');
       if (response.incidents.length === 0) {
-        $('#incidents').append('<li></li>');
+        $('#incidents').html('<li></li>');
       } else {
-        $('#incidents').append(
+        $('#incidents').html(
             metrorail.incidents({'incidents': response.incidents})
                         );
       }
       $('#incidents').marquee('update');
       $('#incidents').marquee('resume');
-      $('#incidents').marquee('pause');
-      $('#incidents li.delete').remove();
-      $('#incidents').marquee('update');
-      $('#incidents').marquee('resume');
-
-
     };
 
     function updateIncidents(socket) {
@@ -107,12 +89,14 @@ var metrorail = {
     }
   },
   onShow: function() {
-    //start marquee,
+    //start marquee
     $('#incidents').marquee('resume');
+    $('#incidents').data('state','running');
   },
   onHide: function() {
     //stop marquee
     $('#incidents').marquee('pause');
+    $('#incidents').data('state','paused');
   },
   title: function() {return stationName;}
 

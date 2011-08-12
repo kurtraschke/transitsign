@@ -139,8 +139,7 @@
 			// get the delay speed
 			delay = delay || options.pauseSpeed;
 			// if	item is wider than marquee, then scroll
-			//TODO: added '|| true' here.  Find out why that fixed things, and remediate.
-			if( doScroll($li) || true ){
+			if( doScroll($li) ){
 				setTimeout(function (){
 					// if paused, stop processing (we need to check to see if the pause state has changed)
 					if( paused == true ) return false;
