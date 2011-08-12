@@ -8,8 +8,23 @@ function iconID(theModule) {
   return theModule.name + '_icon';
 }
 
+function onBefore(currSlideElement, nextSlideElement, options, forwardFlag) {
+  var currModule = $(currSlideElement).data('module');
+  var nextModule = $(nextSlideElement).data('module');
+  $('#' + iconID(currModule)).removeClass('active');
+  currModule.onHide();
+  $('#slidetitle').fadeOut(250,
+      function() {
+        $('#slidetitle').html(nextModule.title()).fadeIn(250);
+      }
+  );
+  nextModule.onShow();
+  $('#' + iconID(nextModule)).addClass('active');
+}
+
 $(document).ready(function() {
-  $('#wx').cycle({
+
+  $('#topright').cycle({
     fx: 'fade',
     timeout: 10000,
     containerResize: 0,
@@ -24,24 +39,8 @@ $(document).ready(function() {
   var slidecontainer = $('#slidecontainer');
   var iconcontainer = $('#icons');
 
-  onBefore = function(currSlideElement, nextSlideElement,
-                      options, forwardFlag) {
-    var currModule = $(currSlideElement).data('module');
-    var nextModule = $(nextSlideElement).data('module');
-    $('#' + iconID(currModule)).removeClass('active');
-    currModule.onHide();
-    $('#slidetitle').fadeOut(250,
-                             function() {
-                     $('#slidetitle').html(nextModule.title()).fadeIn(250);
-                             }
-               );
-    nextModule.onShow();
-    $('#' + iconID(nextModule)).addClass('active');
-  };
-
   console.log('attempting connection');
   var socket = io.connect();
-
 
   socket.on('error', function(err) {
     console.log(err);
@@ -50,21 +49,11 @@ $(document).ready(function() {
   socket.on('connect', function() {
     //This gets called when we reconnect as well;
     //take heed!
-
-    console.log('Connected !');
+    console.log('connected');
     socket.emit('set weather', config.wx_station);
 
-    function updateWX() {
-      socket.emit('get weather', function(response) {
-        response = response.wx[0];
-        $('#wx span.obs').html(response.weather);
-        var temp_string = response.temp_f.substring(0, 2) + ' ºF';
-        $('#wx span.temp').html(temp_string);
-      });
-    }
-
-    updateWX();
-    setInterval(updateWX, 1800000);
+    updateWX(socket);
+    setInterval(function() {updateWX(socket);}, 1800000);
 
     var modules = [metrorail, bus, cabi];
 
@@ -92,3 +81,12 @@ $(document).ready(function() {
   });
 
 });
+
+function updateWX(socket) {
+  socket.emit('get weather', function(response) {
+    response = response.wx[0];
+    $('#topright span.obs').html(response.weather);
+    var temp_string = response.temp_f.substring(0, 2) + ' ºF';
+    $('#topright span.temp').html(temp_string);
+  });
+}

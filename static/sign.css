@@ -6,15 +6,14 @@ body {
 
 }
 
-#wx {
+#topright {
     position:absolute;
     top:0;
     right:0;
     width:25%;
-    //float: right;
 }
 
-#wx div {
+#topright div {
     white-space: nowrap;
     text-align: right;
     font-size: 0.5em;
