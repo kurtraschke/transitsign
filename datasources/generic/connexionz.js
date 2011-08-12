@@ -6,86 +6,86 @@ var rlrequest = require('../rlrequest');
 exports.updateConnexionzPredictions = updateConnexionzPredictions;
 
 function updateConnexionzPredictions(db, agency, url, stop_id, callback) {
-    async.waterfall([
-        function(callback) {
-            rlrequest.request_limited({uri:url + stop_id},
-                    function (error, response, body) {
-                        callback(error, body);
-                    });
-        },
-        function(body, callback) {
-            var parser = new xml2js.Parser();
-            parser.on('end', function(result) {
-                callback(null, result);
-            });
-         
-            parser.parseString(body);
-        },
-        function(data, callback) {    
-            var tripsOut = Array();
+  async.waterfall([
+    function(callback) {
+      rlrequest.request_limited({uri: url + stop_id},
+          function(error, response, body) {
+            callback(error, body);
+          });
+    },
+    function(body, callback) {
+      var parser = new xml2js.Parser();
+      parser.on('end', function(result) {
+        callback(null, result);
+      });
 
-            var StopName = data.Platform['@'].Name;
+      parser.parseString(body);
+    },
+    function(data, callback) {
+      var tripsOut = Array();
 
-            if ("Route" in data.Platform) {
-                var routes = data.Platform.Route;
-                if (!(routes instanceof Array)) {
-                    routes = [routes];
-                }
+      var StopName = data.Platform['@'].Name;
 
-                for(var i = 0; i < routes.length; i++) {
-                    var route = routes[i];
-                    var RouteID = route['@'].RouteNo;
-                    
-                    var destinations = route.Destination;
+      if ('Route' in data.Platform) {
+        var routes = data.Platform.Route;
+        if (!(routes instanceof Array)) {
+          routes = [routes];
+        }
 
-                    if (!(destinations instanceof Array)) {
-                        destinations = [destinations]
-                    }
+        for (var i = 0; i < routes.length; i++) {
+          var route = routes[i];
+          var RouteID = route['@'].RouteNo;
 
-                    for(var j = 0; j < destinations.length; j++) {
-                        var destination = destinations[j];
-                        var DirectionName = destination['@'].Name;
+          var destinations = route.Destination;
 
-                        var trips = destination.Trip;
-                        if (!(trips instanceof Array)) {
-                            trips = [trips];
-                        }
+          if (!(destinations instanceof Array)) {
+            destinations = [destinations];
+          }
 
-                        for(var k = 0; k < trips.length; k++) {
-                            var trip = trips[k]['@'];
-                            tripsOut.push({'Minutes': parseInt(trip.ETA),
-                                           'StopName': StopName,
-                                           'StopID': stop_id,
-                                           'RouteID': RouteID,
-                                           'DirectionText': DirectionName,
-                                           'Agency': agency})
-                        }
-                    }                    
-                }
+          for (var j = 0; j < destinations.length; j++) {
+            var destination = destinations[j];
+            var DirectionName = destination['@'].Name;
+
+            var trips = destination.Trip;
+            if (!(trips instanceof Array)) {
+              trips = [trips];
             }
 
-            callback(null, tripsOut);
-        },
-        function (tripsOut, callback) {
-            var collection = db.collection('bus_predictions');
-
-            async.series(
-                [
-                    function(callback) {
-                        collection.remove({"StopID": stop_id,
-                                           "Agency": agency}, {"safe":true}, callback);
-                    },
-                    function(callback) {
-                        if (tripsOut.length > 0) {
-                            collection.insert(tripsOut, {"safe":true}, callback);
-                        } else {
-                            callback(null);
-                        }
-                    }
-                ],
-                function(err, results) {
-                    callback(err);
-                });
+            for (var k = 0; k < trips.length; k++) {
+              var trip = trips[k]['@'];
+              tripsOut.push({'Minutes': parseInt(trip.ETA),
+                'StopName': StopName,
+                'StopID': stop_id,
+                'RouteID': RouteID,
+                'DirectionText': DirectionName,
+                'Agency': agency});
+            }
+          }
         }
-    ], callback);
+      }
+
+      callback(null, tripsOut);
+    },
+    function(tripsOut, callback) {
+      var collection = db.collection('bus_predictions');
+
+      async.series(
+          [
+           function(callback) {
+             collection.remove({'StopID': stop_id,
+               'Agency': agency}, {'safe': true}, callback);
+           },
+           function(callback) {
+             if (tripsOut.length > 0) {
+               collection.insert(tripsOut, {'safe': true}, callback);
+             } else {
+               callback(null);
+             }
+           }
+          ],
+          function(err, results) {
+            callback(err);
+          });
+    }
+  ], callback);
 }

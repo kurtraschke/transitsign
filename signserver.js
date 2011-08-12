@@ -10,17 +10,17 @@ winston.add(require('winston-mongoDB').MongoDB, {'db': 'testdb'});
 
 function run() {
     var db = mongo.db('localhost:27017/testdb');
- 
-    var servermodules = [require("./servermods/cabi.js"),
-                         require("./servermods/rail.js"),
-                         require("./servermods/bus.js"),
-                         require("./servermods/wx.js")];
+
+    var servermodules = [require('./servermods/cabi.js'),
+                         require('./servermods/rail.js'),
+                         require('./servermods/bus.js'),
+                         require('./servermods/wx.js')];
 
     async.series([
         function(callback) {
             async.forEachSeries(servermodules, function(item, callback) {
-                if (typeof item.init === "function") {
-                    item.init(db, callback)
+                if (typeof item.init === 'function') {
+                    item.init(db, callback);
                 } else {
                     callback(null);
                 }
@@ -32,31 +32,30 @@ function run() {
             app.configure(function() {
                 app.use(express.static(__dirname + '/static'));
             });
-            
-            var io = require('socket.io').listen(app, 
-                                                 {'transports': ['websocket', 'flashsocket', 'htmlfile',
-                                                                 'xhr-polling', 'jsonp-polling'],
-                                                  'logger': winston,
+
+            var io = require('socket.io').listen(app,
+                                                 {'transports':
+                                                  ['websocket', 'flashsocket',
+                                                   'htmlfile', 'xhr-polling',
+                                                   'jsonp-polling'],
+                                                  'logger': winston
                                                  });
-            
-            io.sockets.on('connection', function (socket) {
-                for (var i=0; i < servermodules.length; i++) {
+
+            io.sockets.on('connection', function(socket) {
+                for (var i = 0; i < servermodules.length; i++) {
                     servermodules[i].configure(db, socket);
                 }
             });
-            
+
             app.listen(8000);
             updates.periodicUpdates(db);
         }
 
     ], function(err) {
         if (err) {
-            winston.error("Error in initialization", err);
+            winston.error('Error in initialization', err);
         }
     });
-                         
-    
-    
 }
 
 run();

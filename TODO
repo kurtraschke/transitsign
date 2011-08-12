@@ -9,7 +9,7 @@ Client:
 * High priority: better font.  Helvetica may seem appropriate, but it's actually bad for
   signage applications like this as it's prone to halation problems.  We'll try Droid Sans for now.
 * More robust marquee (see notes in source).
-* Fix reconnect bug (on reconnect, the initialization routine runs again, but it's not .
+* Fix reconnect bug (on reconnect, the initialization routine runs again, but it's not designed for that).
 * When disconnected, we should have a full-screen overlay saying "sign out of service" with some explanatory text.
 * Related: the server should have a way to tell the client that data has gone stale.
 * Improve configuration mechanism.
