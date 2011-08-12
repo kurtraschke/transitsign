@@ -6,6 +6,7 @@ in their respective headers, unless otherwise noted:
 * static/resources/js/jquery.marquee.js
 * static/resources/js/jquery.cycle.all.js
 * static/resources/js/soyutils.js
+* static/resources/js/strftime.js
 * static/resource/img/bike.svg (Public domain)
 * static/resource/img/bus.svg (Public domain)
 * static/resource/img/rail.svg (Public domain)

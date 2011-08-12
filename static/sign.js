@@ -9,6 +9,18 @@ function iconID(theModule) {
 }
 
 $(document).ready(function(){
+    $('#wx').cycle({ 
+        fx:  'fade', 
+        timeout: 10000, 
+        containerResize: 0,
+        slideResize: 0,
+    });
+
+    setInterval(function() {
+        var clock = $(".clock").first();
+        clock.html(strftime("%I:%M %p"));
+    }, 1000);
+
     var slidecontainer = $('#slidecontainer');
     var iconcontainer = $('#icons')
 
@@ -25,10 +37,10 @@ $(document).ready(function(){
     console.log('attempting connection');
     var socket = io.connect();
 
+
     socket.on('error', function(err) {
         console.log(err);
     });
-
 
     socket.on('connect', function () {
         //This gets called when we reconnect as well;

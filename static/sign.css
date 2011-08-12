@@ -7,11 +7,23 @@ body {
 }
 
 #wx {
-    float: right;
-    text-align: right;
-    font-size: 0.5em;
+    position:absolute;
+    top:0;
+    right:0;
+    width:25%;
+    //float: right;
 }
 
+#wx div {
+    white-space: nowrap;
+    text-align: right;
+    font-size: 0.5em;
+    width: 100%;
+}
+
+.clock {
+    font-size: 2em;
+}
 table {
     font-size: 6em;
 }
@@ -32,8 +44,6 @@ td:not(:last-child) {
 thead tr td:last-child {
     padding-right: 0.5em;
 }
-
-
 
 #lines {
     float: left;
@@ -151,7 +161,7 @@ thead tr td:last-child {
 #incidentcontainer {
     position: fixed;
     bottom: 1em;
-    width: 100%;<div class="minutes">{$bus.Minutes}</div>       
+    width: 100%;       
 }
 
 #header img {
