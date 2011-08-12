@@ -23,7 +23,9 @@ function updateNextBusPredictions(db, agency, agency_id, stop_id, callback) {
       parser.on('end', function(result) {
         callback(null, result);
       });
-
+      parser.on('error', function(err) {
+        callback(err);
+      });
       parser.parseString(body);
     },
     function(data, callback) {

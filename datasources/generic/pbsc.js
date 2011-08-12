@@ -18,6 +18,9 @@ function updatePBSC(db, url, callback) {
       parser.on('end', function(result) {
         callback(null, result);
       });
+      parser.on('error', function(err) {
+        callback(err);
+      });
       parser.parseString(body);
     },
     function(data, callback) {
