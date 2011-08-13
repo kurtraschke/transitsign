@@ -10,6 +10,7 @@ Client:
 
 * High priority: better font.  Helvetica may seem appropriate, but it's actually bad for
   signage applications like this as it's prone to halation problems.  We'll try Droid Sans for now.
+* Bikeshare: highlight stations which are locked, not installed, or have no bikes or docks
 * Fix reconnect bug (on reconnect, the initialization routine runs again, but it's not designed for that).
 * When disconnected, we should have a full-screen overlay saying "sign out of service" with some explanatory text.
 * Related: the server should have a way to tell the client that data has gone stale.
@@ -19,6 +20,7 @@ Both:
 
 * CoffeeScript?  Is it worth it?
 * If not, at least compile/minify the JS.
+* Stop checking Metrorail predictions after the last train has gone, and communicate this fact on the signs.
 
 Other data sources:
 
