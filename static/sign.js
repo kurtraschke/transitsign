@@ -26,7 +26,7 @@ $(document).ready(function() {
 
   $('#topright').cycle({
     fx: 'fade',
-    timeout: 10000,
+    timeout: 5000,
     containerResize: 0,
     slideResize: 0
   });
