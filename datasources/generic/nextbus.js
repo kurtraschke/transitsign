@@ -63,12 +63,15 @@ function updateNextBusPredictions(db, agency, agency_id, stop_id, callback) {
 
           for (var k = 0; k < trips.length; k++) {
             var trip = trips[k]['@'];
-            tripsOut.push({'Minutes': parseInt(trip.minutes),
+            tripsOut.push({
+              'Minutes': parseInt(trip.minutes),
               'StopName': StopName,
               'StopID': stop_id,
               'RouteID': RouteID,
               'DirectionText': DirectionName,
-              'Agency': agency});
+              'Agency': agency,
+              'VehicleID': trip.vehicle
+            });
           }
         }
       }
