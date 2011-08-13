@@ -19,7 +19,7 @@ var metrorail = {
 
     $('#incidents').marquee({
       yScroll: 'bottom', pauseSpeed: 1500,
-      scrollSpeed: 10, pauseOnHover: false,
+      scrollSpeed: 8, pauseOnHover: false,
       beforeshow: function($marquee, $li) {
         var lines = $li.find('.lines');
         $('#lines').html(lines.html()).fadeIn(1000);
