@@ -123,7 +123,7 @@
 			$marquee.data("marquee.showing", true);
 			$li.addClass(options.cssShowing);
 	
-			$li.css(params).animate({top: "0px"}, options.showSpeed, options.fxEasingShow, function (){ 
+			$li.css(params).show().animate({top: "0px"}, options.showSpeed, options.fxEasingShow, function (){ 
 				// run the show callback
 				if( $.isFunction(options.show) ) options.show.apply(self, [$marquee, $li]);
 				$marquee.data("marquee.showing", false);
@@ -144,7 +144,8 @@
 					// if paused, stop processing (we need to check to see if the pause state has changed)
 					if( paused == true ) return false;
 
-					var width = $li.outerWidth(), endPos = width * -1, curPos = parseInt($li.css("left"), 10);
+					var width = $li.outerWidth(), endPos = width * -1 + ($marquee.innerWidth()/2),
+                                             curPos = parseInt($li.css("left"), 10);
 
 					// scroll the message to the left					
 					$li.animate({left: endPos + "px"}, ((width + curPos) * options.scrollSpeed), options.fxEasingScroll, function (){ finish($li); });
@@ -168,9 +169,9 @@
 			if( $.isFunction(options.aftershow) ) options.aftershow.apply(self, [$marquee, $li]);
 			
 			// mark that we're done scrolling this element
-			$li.removeClass(options.cssShowing);
-			
-			// show the next message
+			$li.removeClass(options.cssShowing).hide();
+
+		        // show the next message
 			showNext();
 		}
 
