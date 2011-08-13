@@ -1,6 +1,7 @@
 var cabi = {
   name: 'cabi',
   icon: 'resources/img/bike.svg',
+  displayTime: 20,
 
   doInit: function(div, socket) {
     div = div[0];

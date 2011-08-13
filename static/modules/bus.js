@@ -1,6 +1,7 @@
 var bus = {
   name: 'bus',
   icon: 'resources/img/bus.svg',
+  displayTime: 30,
 
   doInit: function(div, socket) {
     div = div[0];

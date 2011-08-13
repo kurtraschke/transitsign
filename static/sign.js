@@ -4,26 +4,7 @@
 //Perform module initialization tasks.
 //Once done, start slideshow.
 
-function iconID(theModule) {
-  return theModule.name + '_icon';
-}
-
-function onBefore(currSlideElement, nextSlideElement, options, forwardFlag) {
-  var currModule = $(currSlideElement).data('module');
-  var nextModule = $(nextSlideElement).data('module');
-  $('#' + iconID(currModule)).removeClass('active');
-  currModule.onHide();
-  $('#slidetitle').fadeOut(250,
-      function() {
-        $('#slidetitle').html(nextModule.title()).fadeIn(250);
-      }
-  );
-  nextModule.onShow();
-  $('#' + iconID(nextModule)).addClass('active');
-}
-
 $(document).ready(function() {
-
   $('#topright').cycle({
     fx: 'fade',
     timeout: 5000,
@@ -67,19 +48,15 @@ $(document).ready(function() {
       theModule.doInit(moduleDiv, socket);
     });
 
-    //TODO: use callback for timeout so we can vary timing by slide.
-
     slidecontainer.cycle({
       fx: 'fade',
       timeout: 20000,
       containerResize: 0,
       slideResize: 0,
-      before: onBefore
+      before: onBefore,
+      timeoutFn: findTimeout
     });
-
-
   });
-
 });
 
 function updateWX(socket) {
@@ -89,4 +66,27 @@ function updateWX(socket) {
     var temp_string = response.temp_f.substring(0, 2) + ' ºF';
     $('#topright span.temp').html(temp_string);
   });
+}
+
+function iconID(theModule) {
+  return theModule.name + '_icon';
+}
+
+function onBefore(currSlideElement, nextSlideElement, options, forwardFlag) {
+  var currModule = $(currSlideElement).data('module');
+  var nextModule = $(nextSlideElement).data('module');
+  $('#' + iconID(currModule)).removeClass('active');
+  currModule.onHide();
+  $('#slidetitle').fadeOut(250,
+      function() {
+        $('#slidetitle').html(nextModule.title()).fadeIn(250);
+      }
+  );
+  nextModule.onShow();
+  $('#' + iconID(nextModule)).addClass('active');
+}
+
+function findTimeout(currSlideElement, nextSlideElement, options, forwardFlag) {
+  var currModule = $(currSlideElement).data('module');
+  return currModule.displayTime * 1000;
 }

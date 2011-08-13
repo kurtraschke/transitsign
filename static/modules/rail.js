@@ -1,6 +1,7 @@
 var metrorail = {
   name: 'metrorail',
   icon: 'resources/img/rail.svg',
+  displayTime: 60,
 
   doInit: function(div, socket) {
     div = div[0];
