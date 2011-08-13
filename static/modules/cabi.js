@@ -9,7 +9,7 @@ var cabi = {
     function updateCabi() {
       socket.emit('get cabi', config.cabi_ids, function(response) {
         response = response.cabi;
-        soy.renderElement(div, cabi.main, {'stations': response});
+        soy.renderElement(div, cabiTemplate.main, {'stations': response});
       });
     }
 

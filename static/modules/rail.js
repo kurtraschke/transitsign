@@ -5,15 +5,15 @@ var metrorail = {
 
   doInit: function(div, socket) {
     div = div[0];
-    soy.renderElement(div, metrorail.main, {});
+    soy.renderElement(div, railTemplate.main, {});
     soy.renderElement($('#railpredictions tbody')[0],
-        metrorail.predictions,
+        railTemplate.predictions,
         {'predictions': [{'Line': 'RD',
           'Car': '8',
           'DestinationName': 'Franconia-Springfield',
           'Min': 'ARR'}]});
 
-    soy.renderElement($('#incidents')[0], metrorail.incidents,
+    soy.renderElement($('#incidents')[0], railTemplate.incidents,
         {'incidents': [{'Description': 'Test alert.',
           'LinesAffectedArr': ['RD']}]});
 
@@ -78,7 +78,7 @@ var numTrains = 0;
 function updateTrains(socket) {
   socket.emit('get trains', -2, function(response) {
     soy.renderElement($('#railpredictions tbody')[0],
-        metrorail.predictions,
+        railTemplate.predictions,
         {'predictions': response.trains.slice(0, numTrains)});
   });
 }
@@ -92,7 +92,7 @@ function setIncidents(response) {
     $('#incidents').html('<li></li>');
   } else {
     $('#incidents').html(
-        metrorail.incidents({'incidents': response.incidents})
+        railTemplate.incidents({'incidents': response.incidents})
     );
   }
   $('#incidents').marquee('update');

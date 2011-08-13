@@ -1,10 +1,10 @@
 // This file was automatically generated from bus.soy.
 // Please don't edit this file by hand.
 
-if (typeof bus == 'undefined') { var bus = {}; }
+if (typeof busTemplate == 'undefined') { var busTemplate = {}; }
 
 
-bus.main = function(opt_data, opt_sb) {
+busTemplate.main = function(opt_data, opt_sb) {
   var output = opt_sb || new soy.StringBuilder();
   var busList3 = opt_data.buses;
   var busListLen3 = busList3.length;

@@ -11,7 +11,8 @@ var bus = {
     function updateBuses() {
       socket.emit('get buses', function(response) {
         response = response.buses;
-        soy.renderElement(div, bus.main, {'buses': response.slice(0, 8)});
+        soy.renderElement(div, busTemplate.main,
+                          {'buses': response.slice(0, 8)});
       });
     }
 

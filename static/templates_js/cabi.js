@@ -1,10 +1,10 @@
 // This file was automatically generated from cabi.soy.
 // Please don't edit this file by hand.
 
-if (typeof cabi == 'undefined') { var cabi = {}; }
+if (typeof cabiTemplate == 'undefined') { var cabiTemplate = {}; }
 
 
-cabi.main = function(opt_data, opt_sb) {
+cabiTemplate.main = function(opt_data, opt_sb) {
   var output = opt_sb || new soy.StringBuilder();
   var stationList18 = opt_data.stations;
   var stationListLen18 = stationList18.length;
