@@ -26,22 +26,25 @@ function updateTrains(db, callback) {
       var trains = parsed_data.Trains;
       var trainsOut = Array();
 
-      for (var i = 0; i < trains.length; i++) {
-        var train = trains[i];
-        if (train.Min === '' || train.DestinationName === '' ||
-            train.Car === '' || train.Line === '') {
-          continue;
-        }
+      if (typeof trains !== 'undefined') {
+        for (var i = 0; i < trains.length; i++) {
+          var train = trains[i];
+          if (train.Min === '' || train.DestinationName === '' ||
+              train.Car === '' || train.Line === '') {
+            continue;
+          }
 
-        if (train.Min === 'ARR') {
-          train.Min = -1;
-        } else if (train.Min === 'BRD') {
-          train.Min = -2;
-        } else {
-          train.Min = parseInt(train.Min);
+          if (train.Min === 'ARR') {
+            train.Min = -1;
+          } else if (train.Min === 'BRD') {
+            train.Min = -2;
+          } else {
+            train.Min = parseInt(train.Min);
+          }
+          trainsOut.push(train);
         }
-        trainsOut.push(train);
       }
+
       callback(null, trainsOut);
     },
     function(trainsOut, callback) {
