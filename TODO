@@ -1,28 +1,40 @@
 Server:
 
-* Proper packaging: the modules we need are async, express, mongoskin, redmark, request, socket.io, xml2js, winston, winston-mongodb
+* Proper packaging: the modules we need are async, express, mongoskin,
+  redmark, request, socket.io, xml2js, winston, winston-mongodb
 * Capped collection for logs.
 * Add user interface for viewing logs.
 * MongoDB indexes.
-* Real-time stats: last fetch for each source, number of clients connected, number of calls per API per day, etc.
+* Real-time stats: last fetch for each source, number of clients connected,
+  number of calls per API per day, etc.
 
 Client:
 
-* High priority: better font.  Helvetica may seem appropriate, but it's actually bad for
-  signage applications like this as it's prone to halation problems.  We'll try Droid Sans for now.
-* Bikeshare: highlight stations which are locked, not installed, or have no bikes or docks
-* Fix reconnect bug (on reconnect, the initialization routine runs again, but it's not designed for that).
-* When disconnected, we should have a full-screen overlay saying "sign out of service" with some explanatory text.
-* Related: the server should have a way to tell the client that data has gone stale.
+* High priority: better font.  Helvetica may seem appropriate, but it's 
+  actually bad for signage applications like this as it's prone to halation
+  problems.  We'll try Droid Sans for now.
+* Bikeshare: highlight stations which are locked, not installed, or have no
+  bikes or docks
+* Fix reconnect bug (on reconnect, the initialization routine runs again,
+  but it's not designed for that).
+* When disconnected, we should have a full-screen overlay saying "sign out 
+  of service" with some explanatory text.
+* Related: the server should have a way to tell the client that data has
+  gone stale.
 * Improve configuration mechanism.
 
 Both:
 
 * CoffeeScript?  Is it worth it?
 * If not, at least compile/minify the JS.
-* Stop checking Metrorail predictions after the last train has gone, and communicate this fact on the signs.
+* Stop checking Metrorail predictions after the last train has gone,
+  and communicate this fact on the signs.
 
 Other data sources:
 
 * BART ETD (good for demonstrating modularity)
-* Air quality?
+* Air quality
+* Weather forecast
+* FAA air traffic delays (might be good for intermodal transit centers
+  at airports or which provide service to an airport):
+  http://www.fly.faa.gov/flyfaa/xmlAirportStatus.jsp
