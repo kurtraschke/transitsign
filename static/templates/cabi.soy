@@ -7,9 +7,13 @@
 {template .main}
 {foreach $station in $stations}
 <div class="cabistation">
-<div class="stationtitle">{$station.name}</div>       
+<div class="stationtitle">{$station.name}</div>
+{if $station.installed == 'true' and $station.locked == 'false'}
 Bikes available: {$station.nbBikes}<br>
 Docks available: {$station.nbEmptyDocks}
+{else}
+Station unavailable.
+{/if}
 </div>
 {/foreach}
 {/template}
