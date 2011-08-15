@@ -1,37 +1,41 @@
-var bus = {
-  name: 'bus',
-  icon: 'resources/img/bus.svg',
-  displayTime: 30,
+if (typeof slideModules == 'undefined') { var slideModules = {}; }
 
-  doInit: function(div, socket) {
-    div = div[0];
+slideModules['Bus'] = BusSlide;
 
-    //render dummy element for sizing
-    soy.renderElement(div, busTemplate.main,
-        {'buses': [{'Minutes': 10, 'Agency': 'Test Agency',
-          'RouteID': 'Route', 'StopName': 'Stop Name',
-          'DirectionText': 'Direction Text'}]});
+function BusSlide(div, socket, parameters) {
+  this.div = div;
+  this.socket = socket;
+  this.icon = 'resources/img/bus.svg';
+  this.title = parameters.title || "Buses near here";
+  this.name = parameters.name || "bus";
+  
+  $(div).attr('id', this.name).addClass('bus');
+  
+  //render dummy element for sizing
+  soy.renderElement(div, busTemplate.main,
+    {'buses': [{'Minutes': 10, 'Agency': 'Test Agency',
+      'RouteID': 'Route', 'StopName': 'Stop Name',
+      'DirectionText': 'Direction Text'}]});
 
-    numBuses = Math.floor(($(window).height() - $('#header').outerHeight()) /
+    this.numBuses = Math.floor(($(window).height() - $('#header').outerHeight()) /
                           $(div).children(':first').outerHeight()) * 2;
 
-    socket.emit('set buses', config.stops);
+    socket.emit('set buses', parameters.stops);
 
-    function updateBuses() {
-      socket.emit('get buses', function(response) {
-        response = response.buses;
-        soy.renderElement(div, busTemplate.main,
-                          {'buses': response.slice(0, numBuses)});
-      });
-    }
+    var self = this;
+    self.updateBuses(); 
+    this.updateTimer = setInterval(function(){self.updateBuses();}, 60000);
+}
 
-    updateBuses();
-    setInterval(updateBuses, 60000);
+BusSlide.prototype.updateBuses  = function() {
+    var div = this.div;
+  var numBuses = this.numBuses;
+  this.socket.emit('get buses',
+    function(response) {
+      response = response.buses;
 
-  },
-  onShow: function() {},
-  onHide: function() {},
-  title: function() {return 'Buses near here';}
-};
-
-var numBuses = 0;
+      soy.renderElement(div, busTemplate.main,
+          {'buses': response.slice(0, numBuses)}
+              );
+    });
+}

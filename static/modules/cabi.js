@@ -1,27 +1,30 @@
-var cabi = {
-  name: 'cabi',
-  icon: 'resources/img/bike.svg',
-  displayTime: 20,
+if (typeof slideModules == 'undefined') { var slideModules = {}; }
 
-  doInit: function(div, socket) {
-    div = div[0];
+slideModules['CaBi'] = CaBiSlide;
 
-    function updateCabi() {
-      socket.emit('get cabi', config.cabi_ids, function(response) {
-        response = response.cabi;
-        soy.renderElement(div, cabiTemplate.main, {'stations': response});
-      });
-    }
+function CaBiSlide(div, socket, parameters) {
+  this.div = div;
+  this.socket = socket;
+  this.parameters = parameters;
+  this.icon = 'resources/img/bike.svg';
+  this.title = parameters.title || "Capital Bikeshare";
+  this.name = parameters.name || "cabi";
+  
+  $(div).attr('id', this.name).addClass('cabi');
+  
+  var self = this;
+  self.updateCaBi();
+  this.updateTimer = setInterval(function(){self.updateCaBi();}, 60000); 
+}
 
-    updateCabi();
-    setInterval(updateCabi, 60000);
-
-  },
-  onShow: function() {},
-  onHide: function() {},
-  title: function() {return 'Capital Bikeshare';}
-
-
-
-
-};
+CaBiSlide.prototype.updateCaBi = function() {
+  var div = this.div;
+  var stations = this.parameters.stations;
+  this.socket.emit('get cabi', stations,
+                   function(response) {
+                     response = response.cabi;
+                     soy.renderElement(div, cabiTemplate.main,
+                                       {'stations': response});
+                   });
+  
+}

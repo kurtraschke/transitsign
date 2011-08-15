@@ -173,15 +173,14 @@ thead tr td:last-child {
 }
 
 #bus .busprediction {
-    font-size: 2em;
+    font-size: 2.2em;
     width: 50%;
     float: left;
 }
 
 #bus .busprediction .route {
-    font-size: 1.8em;
+    font-size: 1.6em;
 }
-
 
 #bus .busprediction div {
     width: 80%;
@@ -191,18 +190,18 @@ thead tr td:last-child {
 #bus .busprediction .minutes {
     width: 20%;
     text-align: center;
-    font-size: 2em;
-    line-height: 1.5em;
+    font-size: 3.6em;
+    line-height: 1em;
     float: right;
 }
 
 
 #cabi .cabistation .stationtitle {
-    font-size: 2em;
+    font-size: 1.5em;
     line-height: 1.2em;
 }
 
 #cabi .cabistation {
-    font-size: 3em;
+    font-size: 4em;
     margin-bottom: 1em;
 }

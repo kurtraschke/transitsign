@@ -1,11 +1,19 @@
-var metrorail = {
-  name: 'metrorail',
-  icon: 'resources/img/rail.svg',
-  displayTime: 60,
+if (typeof slideModules == 'undefined') { var slideModules = {}; }
 
-  doInit: function(div, socket) {
-    div = div[0];
-    soy.renderElement(div, railTemplate.main, {});
+slideModules['Metrorail'] = MetrorailSlide;
+
+function MetrorailSlide(div, socket, parameters) {
+  this.div = div;
+  this.socket = socket;
+  this.parameters = parameters;
+  this.icon = 'resources/img/rail.svg';
+  this.title = parameters.title || "Metrorail";
+  this.name = parameters.name || "metrorail";
+  
+  $(div).attr('id', this.name).addClass('metrorail');
+
+  
+  soy.renderElement(div, railTemplate.main, {});
     soy.renderElement($('#railpredictions tbody')[0],
         railTemplate.predictions,
         {'predictions': [{'Line': 'RD',
@@ -13,11 +21,15 @@ var metrorail = {
           'DestinationName': 'Franconia-Springfield',
           'Min': 'ARR'}]});
 
-    soy.renderElement($('#incidents')[0], railTemplate.incidents,
+              this.marquee = $('#incidents');
+  
+    soy.renderElement(this.marquee[0], railTemplate.incidents,
         {'incidents': [{'Description': 'Test alert.',
           'LinesAffectedArr': ['RD']}]});
 
-    $('#incidents').marquee({
+
+  
+    this.marquee.marquee({
       yScroll: 'bottom', pauseSpeed: 1500,
       scrollSpeed: 8, pauseOnHover: false,
       beforeshow: function($marquee, $li) {
@@ -29,15 +41,15 @@ var metrorail = {
       }
     });
 
-    $('#incidents').data('state', 'running');
+    this.marquee.data('state', 'running');
 
     var newsize, dh, oneRow, empx, estCrawlHeight,
         availableSpace, error;
 
     newsize = (($(window).width() / $('#railpredictions').outerWidth()) * 95);
-    $('#metrorail').css('font-size', newsize + '%');
+    $(div).css('font-size', newsize + '%');
 
-    dh = $($('#railpredictions thead tr').children()[2]);
+    dh = $('#railpredictions thead tr td:nth-child(3)');
     dh.css('width', dh.innerWidth());
 
     oneRow = $('#railpredictions tbody tr').outerHeight();
@@ -47,61 +59,64 @@ var metrorail = {
                         $('#railpredictions').outerHeight() + oneRow -
                         estCrawlHeight;
 
-    numTrains = Math.floor(availableSpace / oneRow);
+    this.numTrains = Math.floor(availableSpace / oneRow);
 
-    socket.emit('set trains', config.rtu, function(data) {
-      stationName = data.name;
-      updateTrains(socket);
-      updateIncidents(socket);
+    var self = this;
+  
+    socket.emit('set trains', this.parameters.rtu, function(data) {
+      self.title = data.name;
+      self.updateTrains(socket);
+      self.updateIncidents(socket);
 
-      setInterval(function() {updateTrains(socket);}, 20000);
-      setInterval(function() {updateIncidents(socket);}, 150000);
+      setInterval(function() {self.updateTrains(socket);}, 20000);
+      setInterval(function() {self.updateIncidents(socket);}, 150000);
     });
-  },
-  onShow: function() {
-    //start marquee
-    $('#incidents').marquee('resume');
-    $('#incidents').data('state', 'running');
-  },
-  onHide: function() {
-    //stop marquee
-    $('#incidents').marquee('pause');
-    $('#incidents').data('state', 'paused');
-  },
-  title: function() {return stationName;}
+  
+}
 
+MetrorailSlide.prototype.onHide = function() {
+  //stop marquee
+    this.marquee.marquee('pause');
+   this.marquee.data('state', 'paused');
 };
 
-var stationName = 'Metrorail';
-var numTrains = 0;
+MetrorailSlide.prototype.onShow = function() {
+    //start marquee
+   this.marquee.marquee('resume');
+    this.marquee.data('state', 'running');
 
-function updateTrains(socket) {
-  socket.emit('get trains', -2, function(response) {
+}
+
+
+MetrorailSlide.prototype.updateTrains = function() {
+  var self = this;
+  this.socket.emit('get trains', -2, function(response) {
     soy.renderElement($('#railpredictions tbody')[0],
         railTemplate.predictions,
-        {'predictions': response.trains.slice(0, numTrains)});
+        {'predictions': response.trains.slice(0, self.numTrains)});
   });
 }
 
-function setIncidents(response) {
-  if ($('#marquee').data('state') === 'running') {
-    $('#incidents').marquee('pause');
+MetrorailSlide.prototype.updateIncidents = function() {
+  var self = this;
+  this.socket.emit('get incidents', function(response){self.setIncidents(response);});
+}
+
+MetrorailSlide.prototype.setIncidents = function(response) {
+  if (this.marquee.data('state') === 'running') {
+    this.marquee.marquee('pause');
   }
   $('#lines').html('');
   if (response.incidents.length === 0) {
-    $('#incidents').html('<li></li>');
+   this.marquee.html('<li></li>');
   } else {
-    $('#incidents').html(
+   this.marquee.html(
         railTemplate.incidents({'incidents': response.incidents})
     );
   }
-  $('#incidents').marquee('update');
-  $('#incidents').marquee('resume');
-  if ($('#marquee').data('state') === 'paused') {
-    $('#incidents').marquee('pause');
+  this.marquee.marquee('update');
+  this.marquee.marquee('resume');
+  if (this.marquee.data('state') === 'paused') {
+    this.marquee.marquee('pause');
   }
-}
-
-function updateIncidents(socket) {
-  socket.emit('get incidents', setIncidents);
 }
