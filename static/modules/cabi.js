@@ -7,14 +7,14 @@ function CaBiSlide(div, socket, parameters) {
   this.socket = socket;
   this.parameters = parameters;
   this.icon = 'resources/img/bike.svg';
-  this.title = parameters.title || "Capital Bikeshare";
-  this.name = parameters.name || "cabi";
-  
+  this.title = parameters.title || 'Capital Bikeshare';
+  this.name = parameters.name || 'cabi';
+
   $(div).attr('id', this.name).addClass('cabi');
-  
+
   var self = this;
   self.updateCaBi();
-  this.updateTimer = setInterval(function(){self.updateCaBi();}, 60000); 
+  this.updateTimer = setInterval(function() {self.updateCaBi();}, 60000);
 }
 
 CaBiSlide.prototype.updateCaBi = function() {
@@ -26,5 +26,5 @@ CaBiSlide.prototype.updateCaBi = function() {
                      soy.renderElement(div, cabiTemplate.main,
                                        {'stations': response});
                    });
-  
-}
+
+};

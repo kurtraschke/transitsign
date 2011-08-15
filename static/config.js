@@ -4,30 +4,30 @@ var config = {
     {
       'type': 'Metrorail',
       'displayTime': 60,
-      'parameters': {'rtu':'C05'}
+      'parameters': {'rtu': 'C05'}
     },
     {
       'type': 'Bus',
       'displayTime': 30,
       'parameters': {'stops': [
         {'Agency': 'DC Circulator',
-        'StopID': '0136'},
+          'StopID': '0136'},
         {'Agency': 'ART',
-        'StopID': '61002'},
+          'StopID': '61002'},
         {'Agency': 'Metrobus',
-        'StopID': '6000882'},
+          'StopID': '6000882'},
         {'Agency': 'Metrobus',
-        'StopID': '6000824'},
+          'StopID': '6000824'},
         {'Agency': 'Metrobus',
-        'StopID': '6000818'},
+          'StopID': '6000818'},
         {'Agency': 'Metrobus',
-        'StopID': '6000827'}
-            ]}
+          'StopID': '6000827'}
+      ]}
     },
     {
       'type': 'CaBi',
       'displayTime': 30,
       'parameters': {'stations': ['127', '128']}
     }
-  ],
+  ]
 };
