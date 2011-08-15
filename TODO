@@ -17,8 +17,6 @@ Client:
   bikes or docks
 * Fix reconnect bug (on reconnect, the initialization routine runs again,
   but it's not designed for that).
-* When disconnected, we should have a full-screen overlay saying "sign out 
-  of service" with some explanatory text.
 * Related: the server should have a way to tell the client that data has
   gone stale.
 * Improve configuration mechanism.
@@ -33,8 +31,9 @@ Both:
 Other data sources:
 
 * BART ETD (good for demonstrating modularity)
+* B-cycle API (http://code.google.com/p/share-a-bike/wiki/BCycleAPI)
 * Air quality
-* Weather forecast
+* Weather forecast (http://www.weather.gov/forecasts/xml/)
 * FAA air traffic delays (might be good for intermodal transit centers
   at airports or which provide service to an airport):
   http://www.fly.faa.gov/flyfaa/xmlAirportStatus.jsp
