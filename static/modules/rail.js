@@ -2,42 +2,48 @@ if (typeof slideModules == 'undefined') { var slideModules = {}; }
 
 slideModules['Metrorail'] = MetrorailSlide;
 
+MetrorailSlide.instanceCount = 1;
+
 function MetrorailSlide(div, socket, parameters) {
+  var self = this;
   this.div = div;
   this.socket = socket;
   this.parameters = parameters;
   this.icon = 'resources/img/rail.svg';
   this.title = parameters.title || 'Metrorail';
-  this.name = parameters.name || 'metrorail';
+  this.name = parameters.name || 'metrorail-';
+  this.name += MetrorailSlide.instanceCount++;
+  this.rtus = parameters.rtus;
+
+  if (!(this.rtus instanceof Array)) {
+    this.rtus = [this.rtus];
+  }
 
   $(div).attr('id', this.name).addClass('metrorail');
 
-
   soy.renderElement(div, railTemplate.main, {});
-  soy.renderElement($('#railpredictions tbody')[0],
+  soy.renderElement($('.railpredictions tbody', this.div)[0],
       railTemplate.predictions,
       {'predictions': [{'Line': 'RD',
         'Car': '8',
         'DestinationName': 'Franconia-Springfield',
         'Min': 'ARR'}]});
 
-  this.marquee = $('#incidents');
+  this.marquee = $('.incidents', this.div);
 
   soy.renderElement(this.marquee[0], railTemplate.incidents,
       {'incidents': [{'Description': 'Test alert.',
         'LinesAffectedArr': ['RD']}]});
-
-
 
   this.marquee.marquee({
     yScroll: 'bottom', pauseSpeed: 1500,
     scrollSpeed: 8, pauseOnHover: false,
     beforeshow: function($marquee, $li) {
       var lines = $li.find('.lines');
-      $('#lines').html(lines.html()).fadeIn(1000);
+      $('.lnbox', self.div).html(lines.html()).fadeIn(1000);
     },
     aftershow: function($marquee, $li) {
-      $('#lines').hide();
+      $('.lnbox', self.div).hide();
     }
   });
 
@@ -46,33 +52,47 @@ function MetrorailSlide(div, socket, parameters) {
   var newsize, dh, oneRow, empx, estCrawlHeight,
       availableSpace, error;
 
-  newsize = (($(window).width() / $('#railpredictions').outerWidth()) * 95);
+  newsize = (($(window).width() / $('.railpredictions',
+                                    this.div).outerWidth()) * 95);
   $(div).css('font-size', newsize + '%');
 
-  dh = $('#railpredictions thead tr td:nth-child(3)');
+  dh = $('.railpredictions thead tr td:nth-child(3)', this.div);
   dh.css('width', dh.innerWidth());
 
-  oneRow = $('#railpredictions tbody tr').outerHeight();
+  oneRow = $('.railpredictions tbody tr', this.div).outerHeight();
   empx = (10 * newsize) / 62.5;
   estCrawlHeight = 6 * empx;
   availableSpace = $(window).height() - $('#header').outerHeight() -
-      $('#railpredictions').outerHeight() + oneRow -
+      $('.railpredictions', this.div).outerHeight() + oneRow -
       estCrawlHeight;
 
   this.numTrains = Math.floor(availableSpace / oneRow);
 
-  var self = this;
 
-  socket.emit('set trains', this.parameters.rtu, function(data) {
-    self.title = data.name;
-    self.updateTrains(socket);
-    self.updateIncidents(socket);
+  if (self.parameters.auto === true) {
+    socket.emit('get metrorail information',
+                this.parameters.rtus, function(data) {
+                  self.title = data.name;
+                  self.parameters.rtus = data.rtus;
+                  self.finishInit();
+        });
 
-    setInterval(function() {self.updateTrains(socket);}, 20000);
-    setInterval(function() {self.updateIncidents(socket);}, 150000);
-  });
+  } else {
+    this.finishInit();
+  }
 
 }
+
+MetrorailSlide.prototype.finishInit = function() {
+  var self = this;
+  self.updateTrains();
+  self.updateIncidents();
+
+  setInterval(function() {self.updateTrains();}, 20000);
+  setInterval(function() {self.updateIncidents();}, 150000);
+
+
+};
 
 MetrorailSlide.prototype.onHide = function() {
   //stop marquee
@@ -84,22 +104,21 @@ MetrorailSlide.prototype.onShow = function() {
   //start marquee
   this.marquee.marquee('resume');
   this.marquee.data('state', 'running');
-
 };
-
 
 MetrorailSlide.prototype.updateTrains = function() {
   var self = this;
-  this.socket.emit('get trains', -2, function(response) {
-    soy.renderElement($('#railpredictions tbody')[0],
-        railTemplate.predictions,
-        {'predictions': response.trains.slice(0, self.numTrains)});
-  });
+  this.socket.emit('get metrorail trains', this.parameters.rtus,
+                   this.parameters.filter, function(response) {
+        soy.renderElement($('.railpredictions tbody', self.div)[0],
+            railTemplate.predictions,
+            {'predictions': response.trains.slice(0, self.numTrains)});
+      });
 };
 
 MetrorailSlide.prototype.updateIncidents = function() {
   var self = this;
-  this.socket.emit('get incidents',
+  this.socket.emit('get metrorail incidents',
                    function(response) {self.setIncidents(response);});
 };
 
@@ -107,7 +126,7 @@ MetrorailSlide.prototype.setIncidents = function(response) {
   if (this.marquee.data('state') === 'running') {
     this.marquee.marquee('pause');
   }
-  $('#lines').html('');
+  $('.lnbox', this.div).html('');
   if (response.incidents.length === 0) {
     this.marquee.html('<li></li>');
   } else {

@@ -25,8 +25,6 @@ $(document).ready(function() {
     var slidecontainer = $('#slidecontainer');
     var iconcontainer = $('#icons');
 
-    //var modules = [metrorail, bus, cabi];
-
     $.each(config.modules, function(key, moduleConfig) {
       var moduleDiv = $('<div />')[0];
       slidecontainer.append(moduleDiv);

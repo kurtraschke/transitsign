@@ -2,15 +2,18 @@ if (typeof slideModules == 'undefined') { var slideModules = {}; }
 
 slideModules['CaBi'] = CaBiSlide;
 
+CaBiSlide.instanceCount = 1;
+
 function CaBiSlide(div, socket, parameters) {
   this.div = div;
   this.socket = socket;
   this.parameters = parameters;
   this.icon = 'resources/img/bike.svg';
   this.title = parameters.title || 'Capital Bikeshare';
-  this.name = parameters.name || 'cabi';
+  this.name = parameters.name || 'cabi-';
+  this.name += CaBiSlide.instanceCount++;
 
-  $(div).attr('id', this.name).addClass('cabi');
+  $(div).attr('id', this.name).addClass('bikeshare');
 
   var self = this;
   self.updateCaBi();

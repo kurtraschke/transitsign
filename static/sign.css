@@ -23,35 +23,42 @@ body {
 .clock {
     font-size: 2em;
 }
-table {
+
+.metrorail table {
     font-size: 6em;
 }
 
-.dest {
+.metrorail .dest {
     font-size: 0.7em;
     white-space: nowrap;
 }
 
-td:not(:first-child) {
+.metrorail table td:not(:first-child) {
     padding-left: 0.8em;
 }
 
-td:not(:last-child) {
+.metrorail td:not(:last-child) {
     padding-right: 0.8em;
 }
 
-thead tr td:last-child {
+.metrorail thead tr td:last-child {
     padding-right: 0.5em;
 }
 
-#lines {
+.metrorail .lnbox {
     float: left;
     padding-top: 0.25em;
     padding-right: 0.25em;
     font-size: 4.5em;
 }
 
-#incidents {
+.metrorail .ic {
+    position: fixed;
+    bottom: 1em;
+    width: 100%;       
+}
+
+.metrorail .incidents {
     display: block;
     padding: 0;
     margin: 0;
@@ -62,7 +69,7 @@ thead tr td:last-child {
     height: 6em;
 }
 
-#incidents li {
+.metrorail .incidents li {
     position: absolute;
     top: -999em;
     left: 0;
@@ -72,7 +79,7 @@ thead tr td:last-child {
     font-size: 4.5em;
 }
 
-#incidents li .lines {
+.metrorail .incidents li .lines {
     display: none;
 }
 
@@ -157,12 +164,6 @@ thead tr td:last-child {
     padding-right: 0.2em;
 }
 
-#incidentcontainer {
-    position: fixed;
-    bottom: 1em;
-    width: 100%;       
-}
-
 #header img {
     height: 0.5em;
     vertical-align:middle;
@@ -172,22 +173,26 @@ thead tr td:last-child {
     height: 1.0em;
 }
 
-#bus .busprediction {
+.bus {
+    width: 100%;
+}
+
+.bus .busprediction {
     font-size: 2.2em;
     width: 50%;
     float: left;
 }
 
-#bus .busprediction .route {
+.bus .busprediction .route {
     font-size: 1.6em;
 }
 
-#bus .busprediction div {
+.bus .busprediction div {
     width: 80%;
     margin-bottom: 0.5em;
 }
 
-#bus .busprediction .minutes {
+.bus .busprediction .minutes {
     width: 20%;
     text-align: center;
     font-size: 3.6em;
@@ -196,12 +201,12 @@ thead tr td:last-child {
 }
 
 
-#cabi .cabistation .stationtitle {
+.bikeshare .station .name {
     font-size: 1.5em;
     line-height: 1.2em;
 }
 
-#cabi .cabistation {
+.bikeshare .station {
     font-size: 4em;
     margin-bottom: 1em;
 }
