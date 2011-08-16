@@ -17,10 +17,11 @@ $(document).ready(function() {
     //This gets called when we reconnect as well;
     //take heed!
     console.log('connected');
-    socket.emit('set weather', config.weather_id);
+    socket.emit('set weather', config.weather_id, function() {
+        updateWX(socket);
+        setInterval(function() {updateWX(socket);}, 1800000);
+            });
 
-    updateWX(socket);
-    setInterval(function() {updateWX(socket);}, 1800000);
 
     var slidecontainer = $('#slidecontainer');
     var iconcontainer = $('#icons');

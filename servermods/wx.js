@@ -1,10 +1,11 @@
 var winston = require('winston');
+var async = require('async');
 
 exports.configure = configure;
 exports.init = init;
 
 function init(db, callback) {
-  db.collection('wx_subscriptions').remove({},{'safe': true}, callback);
+  db.collection('wx_subscriptions').remove({}, {'safe': true}, callback);
 }
 
 function configure(db, socket) {
@@ -12,6 +13,7 @@ function configure(db, socket) {
   socket.on('set weather', function(station, callback) {
     incrementWXCounts(db, station, 1);
     socket.set('wx', station);
+    conditionalFetch(db, station, callback);
   });
 
   socket.on('get weather', function(callback) {
@@ -46,4 +48,22 @@ function incrementWXCounts(db, station, incvalue) {
   collection.update({'station_id': station},
                     {'$inc': {subscriberCount: incvalue}},
                     {'upsert': true});
+}
+
+function conditionalFetch(db, station_id, callback) {
+  var collection = db.collection('wx_obs');
+  async.waterfall([
+    function(callback) {
+      collection.count({'station_id': station_id}, callback);
+    },
+    function(count, callback) {
+      if (count == 0) {
+        winston.info('Performing conditional fetch for weather station ' +
+                     station_id);
+        require('../datasources/wx').updateWX(db, station_id, callback);
+      } else {
+        callback(null);
+      }
+    }
+  ], callback);
 }
