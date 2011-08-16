@@ -13,10 +13,12 @@ winston.add(require('winston-mongoDB').MongoDB,
 function run() {
   var db = mongo.db('localhost:27017/testdb');
 
-  var servermodules = [require('./servermods/cabi.js'),
-        require('./servermods/rail.js'),
-        require('./servermods/bus.js'),
-        require('./servermods/wx.js')];
+  var servermodules = [
+    require('./servermods/bikeshare.js'),
+    require('./servermods/rail.js'),
+    require('./servermods/bus.js'),
+    require('./servermods/wx.js')
+  ];
 
   async.series([
     function(callback) {

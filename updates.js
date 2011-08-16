@@ -67,11 +67,28 @@ function updateBuses(db) {
       });
 }
 
-function updateCabi(db) {
-  winston.info('Updating Capital Bikeshare');
-  require('./datasources/cabi').updateCabi(db, function(err) {
+var PBSCSystems = [
+  {'name': 'Capital Bikeshare', 'url': 'http://www.capitalbikeshare.com/stations/bikeStations.xml'}
+  //{'name': 'BIXI', 'url': 'https://www.bixi.com/data/bikeStations.xml'}
+];
+
+function updatePBSC(db) {
+  async.forEachSeries(PBSCSystems,
+      function(item, callback) {
+        winston.info('Updating PBSC bikeshare system ' + item.name);
+        require('./datasources/generic/pbsc').updatePBSC(db, item.url, item.name, callback);
+      },function(err) {
+        if (err) {
+          winston.error('Error updating PBSC bikeshare system', err);
+        }
+      });
+}
+
+function updateBcycle(db) {
+  winston.info('Updating B-cycle');
+  require('./datasources/generic/bcycle').updateBcycle(db, function(err) {
     if (err) {
-      winston.error('Error updating Capital Bikeshare', err);
+      winston.error('Error updating Bcycle', err);
     }
   });
 }
@@ -105,6 +122,7 @@ function periodicUpdates(db) {
   var railIncidentUpdates = startUpdates(db, updateIncidents,
                                          1 * MINUTE * SECOND);
   var busPredUpdates = startUpdates(db, updateBuses, 1 * MINUTE * SECOND);
-  var cabiUpdates = startUpdates(db, updateCabi, 2 * MINUTE * SECOND);
+  var pbscUpdates = startUpdates(db, updatePBSC, 2 * MINUTE * SECOND);
+  //var bcycleUpdates = startUpdates(db, updateBcycle, 2 * MINUTE * SECOND);
   var weatherUpdates = startUpdates(db, updateWeather, 30 * MINUTE * SECOND);
 }

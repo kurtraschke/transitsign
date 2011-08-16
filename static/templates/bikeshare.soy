@@ -1,0 +1,19 @@
+{namespace bikeshareTemplate}
+
+/**
+ * Render the bikeshare status container.
+ * @param stations Bikeshare stations
+ */
+{template .main}
+{foreach $station in $stations}
+<div class="station">
+<div class="name">{$station.name}</div>
+{if $station.available}
+Bikes available: {$station.bikes}<br>
+Docks available: {$station.docks}
+{else}
+Station unavailable.
+{/if}
+</div>
+{/foreach}
+{/template}

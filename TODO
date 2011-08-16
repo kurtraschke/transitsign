@@ -29,7 +29,6 @@ Both:
 Other data sources:
 
 * BART ETD (good for demonstrating modularity)
-* B-cycle API (http://code.google.com/p/share-a-bike/wiki/BCycleAPI)
 * Air quality
 * Weather forecast (http://www.weather.gov/forecasts/xml/)
 * FAA air traffic delays (might be good for intermodal transit centers

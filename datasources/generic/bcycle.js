@@ -1,49 +1,37 @@
 var rlrequest = require('../rlrequest');
 
-var xml2js = require('xml2js');
 var async = require('async');
 
-exports.updatePBSC = updatePBSC;
+exports.updateBcycle = updateBcycle;
 
-function updatePBSC(db, url, systemName, callback) {
+function updateBcycle(db, callback) {
+  var systemName = 'B-cycle';
   async.waterfall([
     function(callback) {
-      rlrequest.request_limited({uri: url},
+      var bcycleAPI = 'http://api.bcycle.com/services/mobile.svc/ListKiosks';
+      rlrequest.request_limited({uri: bcycleAPI},
           function(error, response, body) {
+
             callback(error, body);
           });
     },
     function(body, callback) {
-      var parser = new xml2js.Parser();
-      parser.on('end', function(result) {
-        callback(null, result);
-      });
-      parser.on('error', function(err) {
-        callback(err);
-      });
-      parser.parseString(body);
-    },
-    function(data, callback) {
+      var parsed = JSON.parse(body);
+      var stations = parsed.d.list;
+
       var stationsOut = Array();
-      var stations = data.station;
 
       for (var i = 0; i < stations.length; i++) {
         var station = stations[i];
-
-        var bikes = parseInt(station.nbBikes);
-        var docks = parseInt(station.nbEmptyDocks);
-
         var stationOut = {
           'system': systemName,
-          'id': station.id,
-          'name': station.name,
-          'bikes': bikes,
-          'docks': docks,
-          'size': bikes + docks,
-          'available': (station.installed === 'true' &&
-                        station.locked === 'false')
+          'bikes': station.BikesAvailable,
+          'docks': station.DocksAvailable,
+          'size': station.totalDocks,
+          'id': station.Id + '',
+          'name': station.Name,
+          'available': (station.Status === 'Active')
         };
-
         stationsOut.push(stationOut);
       }
       callback(null, stationsOut);

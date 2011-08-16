@@ -6,11 +6,11 @@ var config = {
       'displayTime': 20,
       'parameters': {'rtus': ['C05'], 'filter': -2}
     },
-    {
+    /*{
       'type': 'Metrorail',
       'displayTime': 20,
       'parameters': {'rtus': 'D03', 'filter': -2, 'auto': true}
-    },
+    },*/
     {
       'type': 'Bus',
       'displayTime': 20,
@@ -29,7 +29,8 @@ var config = {
           'StopID': '6000827'}
       ],
       'filter': 1}
-    }, {
+    },
+    /*{
       'type': 'Bus',
       'displayTime': 20,
       'parameters': {'stops': [
@@ -38,11 +39,25 @@ var config = {
       ],
       'filter': 1,
       'title': 'Silver Spring buses'}
+    },*/
+    {
+      'type': 'Bikeshare',
+      'displayTime': 15,
+      'parameters': {'system': 'Capital Bikeshare',
+                     'stations': ['127', '128']}
+    },
+    /*{
+      'type': 'Bikeshare',
+      'displayTime': 15,
+      'parameters': {'system': 'BIXI',
+                     'stations': ['71']}
     },
     {
-      'type': 'CaBi',
+      'type': 'Bikeshare',
       'displayTime': 15,
-      'parameters': {'stations': ['127', '128']}
-    }
+      'parameters': {'system': 'B-cycle',
+                     'stations': ['1934', '1897']}
+    }*/
+    
   ]
 };
