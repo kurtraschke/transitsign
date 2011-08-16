@@ -48,7 +48,7 @@ function updateTrains(db, callback) {
       callback(null, trainsOut);
     },
     function(trainsOut, callback) {
-      var collection = db.collection('trains');
+      var collection = db.collection('metrorail_trains');
 
       async.series(
           [
@@ -111,7 +111,7 @@ function updateIncidents(db, callback) {
       callback(null, incidentsOut);
     },
     function(incidentsOut, callback) {
-      var collection = db.collection('incidents');
+      var collection = db.collection('metrorail_incidents');
 
       async.series(
           [

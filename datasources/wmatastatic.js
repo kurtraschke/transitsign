@@ -14,7 +14,7 @@ function updateStations(db, callback) {
         if (!error && response.statusCode == 200) {
           var parsed = JSON.parse(body);
           var stations = parsed.Stations;
-          var collection = db.collection('stations');
+          var collection = db.collection('metrorail_stations');
 
           async.series([
                         function(callback) {
@@ -37,7 +37,7 @@ function updateStops(db, callback) {
         if (!error && response.statusCode == 200) {
           var parsed = JSON.parse(body);
           var stops = parsed.Stops;
-          var collection = db.collection('bus_stops');
+          var collection = db.collection('metrobus_stops');
 
           async.series([
                         function(callback) {

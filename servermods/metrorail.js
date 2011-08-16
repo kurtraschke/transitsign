@@ -11,7 +11,7 @@ function init(db, callback) {
 
 function configure(db, socket) {
   socket.on('get metrorail information', function(rtu, callback) {
-    var collection = db.collection('stations');
+    var collection = db.collection('metrorail_stations');
     collection.findOne({'Code': rtu},
         function(err, station) {
           if (!err) {
@@ -35,7 +35,7 @@ function configure(db, socket) {
 
 
   socket.on('get metrorail trains', function(rtus, minutes, callback) {
-    var collection = db.collection('trains');
+    var collection = db.collection('metrorail_trains');
     collection.findItems({'LocationCode': {'$in': rtus},
           'Min': {'$gte': minutes}},
         {'Car': 1, 'DestinationName': 1, 'Line': 1, 'Min': 1, '_id': 0},
@@ -50,7 +50,7 @@ function configure(db, socket) {
   });
 
   socket.on('get metrorail incidents', function(callback) {
-    var collection = db.collection('incidents');
+    var collection = db.collection('metrorail_incidents');
     collection.findItems({},
         {'Description': 1, 'LinesAffectedArr': 1, '_id': 0},
         function(err, items) {

@@ -7,15 +7,15 @@ var updates = require('./updates');
 
 winston.cli();
 winston.add(require('winston-mongoDB').MongoDB,
-            {'db': 'testdb',
+            {'db': 'transitsign',
               'keepAlive': true});
 
 function run() {
-  var db = mongo.db('localhost:27017/testdb');
+  var db = mongo.db('localhost:27017/transitsign');
 
   var servermodules = [
     require('./servermods/bikeshare.js'),
-    require('./servermods/rail.js'),
+    require('./servermods/metrorail.js'),
     require('./servermods/bus.js'),
     require('./servermods/wx.js')
   ];
