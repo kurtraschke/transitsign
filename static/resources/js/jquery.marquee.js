@@ -101,8 +101,8 @@
 			// update the line items
 			$lis = $marquee.find("> li");
 
-			// if we only have one item, show the next item by resuming playback (which will scroll to the next item)
-			if( iCurrentCount <= 1 ) resume();
+			// show the next item
+			show(0);
 		}
 
 		// code to introduce the new marquee message
