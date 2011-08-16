@@ -3,12 +3,14 @@ var async = require('async');
 
 var rlrequest = require('../rlrequest');
 
-exports.updateConnexionzPredictions = updateConnexionzPredictions;
+module.exports = updateConnexionzPredictions;
 
-function updateConnexionzPredictions(db, agency, url, stop_id, callback) {
+function updateConnexionzPredictions(baseURL, agency, stop_id, db, callback) {
+  var path = '/rtt/public/utility/file.aspx' +
+             '?contenttype=SQLXML&Name=RoutePositionET.xml&PlatformNo=';
   async.waterfall([
     function(callback) {
-      rlrequest.request_limited({uri: url + stop_id},
+      rlrequest.request_limited({uri: baseURL + path + stop_id},
           function(error, response, body) {
             callback(error, body);
           });

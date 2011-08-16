@@ -3,17 +3,17 @@ var async = require('async');
 
 var rlrequest = require('../rlrequest');
 
-exports.updateNextBusPredictions = updateNextBusPredictions;
+module.exports = updateNextBusPredictions;
 
-function url_for_stop(agency_id, stop_id) {
+function makeURL(agency_id, stop_id) {
   return 'http://webservices.nextbus.com/service/publicXMLFeed?' +
          'command=predictions&a=' + agency_id + '&stopId=' + stop_id;
 }
 
-function updateNextBusPredictions(db, agency, agency_id, stop_id, callback) {
+function updateNextBusPredictions(agency_id, agency, stop_id, db, callback) {
   async.waterfall([
     function(callback) {
-      rlrequest.request_limited({uri: url_for_stop(agency_id, stop_id)},
+      rlrequest.request_limited({uri: makeURL(agency_id, stop_id)},
           function(error, response, body) {
             callback(error, body);
           });

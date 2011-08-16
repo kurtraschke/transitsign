@@ -40,9 +40,18 @@ function updateWeather(db) {
 }
 
 var agencyMap = {
-  'Metrobus': require('./datasources/metrobus').updateMetrobusPredictions,
-  'ART': require('./datasources/art').updateARTPredictions,
-  'DC Circulator': require('./datasources/circulator').updateCirculatorPredictions
+  'Metrobus': {
+    'fun': require('./datasources/metrobus'),
+    'parameters': ['Metrobus']
+  },
+  'ART': {
+    'fun': require('./datasources/generic/connexionz'),
+    'parameters': ['http://realtime.commuterpage.com', 'ART']
+  },
+  'DC Circulator': {
+    'fun': require('./datasources/generic/nextbus'),
+    'parameters': ['dc-circulator', 'DC Circulator']
+  }
 };
 
 function updateBuses(db) {
@@ -54,8 +63,11 @@ function updateBuses(db) {
           async.forEachSeries(items,
               function(item, callback) {
                 winston.info('Updating ' + item.Agency + ' ' + item.StopID);
-                var updateFunction = agencyMap[item.Agency];
-                updateFunction(db, item.StopID, callback);
+                var updateFunction = agencyMap[item.Agency]['fun'];
+                var updateParameters = agencyMap[item.Agency]['parameters'];
+                var params = updateParameters.concat([item.StopID,
+                                                      db, callback]);
+                updateFunction.apply(null, params);
               },
               function(err) {
                 if (err) {
@@ -68,7 +80,8 @@ function updateBuses(db) {
 }
 
 var PBSCSystems = [
-  {'name': 'Capital Bikeshare', 'url': 'http://www.capitalbikeshare.com/stations/bikeStations.xml'}
+  {'name': 'Capital Bikeshare',
+    'url': 'http://www.capitalbikeshare.com/stations/bikeStations.xml'}
   //{'name': 'BIXI', 'url': 'https://www.bixi.com/data/bikeStations.xml'}
 ];
 
@@ -76,7 +89,8 @@ function updatePBSC(db) {
   async.forEachSeries(PBSCSystems,
       function(item, callback) {
         winston.info('Updating PBSC bikeshare system ' + item.name);
-        require('./datasources/generic/pbsc').updatePBSC(db, item.url, item.name, callback);
+        require('./datasources/generic/pbsc').updatePBSC(db, item.url,
+                                                         item.name, callback);
       },function(err) {
         if (err) {
           winston.error('Error updating PBSC bikeshare system', err);

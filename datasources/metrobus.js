@@ -3,15 +3,15 @@ var async = require('async');
 var rlrequest = require('./rlrequest');
 var wmata_api_key = require('../wmatakey').api_key;
 
-exports.updateMetrobusPredictions = updateMetrobusPredictions;
+module.exports = updateMetrobusPredictions;
 
-function updateMetrobusPredictions(db, stop_id, callback) {
+function updateMetrobusPredictions(agency, stop_id, db, callback) {
   var collection = db.collection('bus_predictions');
 
   async.waterfall([
     function(callback) {
-      url = 'http://api.wmata.com/NextBusService.svc/json/JPredictions?StopID=' +
-          stop_id + '&api_key=' + wmata_api_key;
+      url = 'http://api.wmata.com/NextBusService.svc/json/JPredictions' +
+            '?StopID=' + stop_id + '&api_key=' + wmata_api_key;
       rlrequest.request_limited({uri: url},
           function(error, response, body) {
             if (!error && response.statusCode == 200) {
@@ -25,7 +25,7 @@ function updateMetrobusPredictions(db, stop_id, callback) {
                 prediction.StopID = stop_id;
                 prediction.StopName = parsed.StopName;
                 prediction.Minutes = parseInt(prediction.Minutes);
-                prediction.Agency = 'Metrobus';
+                prediction.Agency = agency;
                 predOut.push(prediction);
               }
               callback(null, predOut);
@@ -40,7 +40,7 @@ function updateMetrobusPredictions(db, stop_id, callback) {
           [
            function(callback) {
              collection.remove({'StopID': stop_id,
-               'Agency': 'Metrobus'}, {'safe': true}, callback);
+               'Agency': agency}, {'safe': true}, callback);
            },
            function(callback) {
              if (predictions.length > 0) {
