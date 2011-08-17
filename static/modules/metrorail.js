@@ -135,6 +135,7 @@ MetrorailSlide.prototype.setIncidents = function(response) {
     );
   }
   this.marquee.marquee('update');
+  this.marquee.marquee('resume');
   if (this.marquee.data('state') === 'paused') {
     this.marquee.marquee('pause');
   }

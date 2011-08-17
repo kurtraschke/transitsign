@@ -80,7 +80,7 @@ function onBefore(currSlideElement, nextSlideElement, options, forwardFlag) {
         $('#slidetitle').html(nextModule.title).fadeIn(250);
       }
   );
-  if ('onShow' in nextModule) {nextModule.onShow();}
+  if ('onShow' in nextModule) {setTimeout(function(){nextModule.onShow();}, 250);}
   $('#' + iconID(nextModule)).addClass('active');
 }
 
