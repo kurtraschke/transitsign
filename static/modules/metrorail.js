@@ -21,9 +21,9 @@ function MetrorailSlide(div, socket, parameters) {
 
   $(div).attr('id', this.name).addClass('metrorail');
 
-  soy.renderElement(div, railTemplate.main, {});
+  soy.renderElement(div, metrorailTemplate.main, {});
   soy.renderElement($('.railpredictions tbody', this.div)[0],
-      railTemplate.predictions,
+      metrorailTemplate.predictions,
       {'predictions': [{'Line': 'RD',
         'Car': '8',
         'DestinationName': 'Franconia-Springfield',
@@ -31,7 +31,7 @@ function MetrorailSlide(div, socket, parameters) {
 
   this.marquee = $('.incidents', this.div);
 
-  soy.renderElement(this.marquee[0], railTemplate.incidents,
+  soy.renderElement(this.marquee[0], metrorailTemplate.incidents,
       {'incidents': [{'Description': 'Test alert.',
         'LinesAffectedArr': ['RD']}]});
 
@@ -111,7 +111,7 @@ MetrorailSlide.prototype.updateTrains = function() {
   this.socket.emit('get metrorail trains', this.parameters.rtus,
                    this.parameters.filter, function(response) {
         soy.renderElement($('.railpredictions tbody', self.div)[0],
-            railTemplate.predictions,
+            metrorailTemplate.predictions,
             {'predictions': response.trains.slice(0, self.numTrains)});
       });
 };
@@ -131,7 +131,7 @@ MetrorailSlide.prototype.setIncidents = function(response) {
     this.marquee.html('<li></li>');
   } else {
     this.marquee.html(
-        railTemplate.incidents({'incidents': response.incidents})
+        metrorailTemplate.incidents({'incidents': response.incidents})
     );
   }
   this.marquee.marquee('update');
