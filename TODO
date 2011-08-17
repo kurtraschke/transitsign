@@ -4,7 +4,6 @@ Server:
   redmark, request, socket.io, xml2js, winston, winston-mongodb
 * Capped collection for logs.
 * Add user interface for viewing logs.
-* MongoDB indexes.
 * Real-time stats: last fetch for each source, number of clients connected,
   number of calls per API per day, etc.
 

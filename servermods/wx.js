@@ -5,7 +5,14 @@ exports.configure = configure;
 exports.init = init;
 
 function init(db, callback) {
-  db.collection('wx_subscriptions').remove({}, {'safe': true}, callback);
+  async.series([
+    function(callback) {
+      db.collection('wx_subscriptions').remove({}, {'safe': true}, callback);
+    },
+    function(callback) {
+      db.collection('wx_obs').ensureIndex({'station_id': 1}, callback);
+    }
+  ], callback);
 }
 
 function configure(db, socket) {

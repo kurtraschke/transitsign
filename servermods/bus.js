@@ -15,6 +15,10 @@ function init(db, callback) {
     },*/
     function(callback) {
       db.collection('stop_subscriptions').remove({}, {'safe': true}, callback);
+    },
+    function(callback) {
+      db.collection('bus_predictions').ensureIndex({'Agency': 1,
+        'StopID': 1}, callback);
     }
   ], callback);
 }

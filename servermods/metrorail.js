@@ -1,4 +1,5 @@
 var winston = require('winston');
+var async = require('async');
 
 var wmatastatic = require('../datasources/wmatastatic');
 
@@ -6,7 +7,14 @@ exports.configure = configure;
 exports.init = init;
 
 function init(db, callback) {
-  wmatastatic.updateStations(db, callback);
+  async.series([
+    function(callback) {
+      wmatastatic.updateStations(db, callback);
+    },
+    function(callback) {
+      db.collection('metrorail_stations').ensureIndex({'Code': 1}, callback);
+    }
+  ], callback);
 }
 
 function configure(db, socket) {
