@@ -1,3 +1,3 @@
 Invoke the Closure Templates compiler as:
 
-java -jar SoyToJsSrcCompiler.jar --outputPathFormat templates_js/{INPUT_FILE_NAME_NO_EXT}.js templates/*.soy
+java -jar SoyToJsSrcCompiler.jar --outputPathFormat scripts/templates_js/{INPUT_FILE_NAME_NO_EXT}_template.js templates/*.soy

@@ -1,9 +1,9 @@
 var config = {
   'weather_id': 'KDCA',
-  'modules': [
+  'slides': [
     {
-      'type': 'Metrorail',
-      'displayTime': 20,
+      'type': 'modules/metrorail',
+      'displayTime': 25,
       'parameters': {'rtus': ['C05'], 'filter': -2}
     },
     /*{
@@ -12,8 +12,8 @@ var config = {
       'parameters': {'rtus': 'D03', 'filter': -2, 'auto': true}
     },*/
     {
-      'type': 'Bus',
-      'displayTime': 20,
+      'type': 'modules/bus',
+      'displayTime': 5,
       'parameters': {'stops': [
         {'Agency': 'DC Circulator',
           'StopID': '0136'},
@@ -30,8 +30,8 @@ var config = {
       ],
       'filter': 1}
     },
-    /*{
-      'type': 'Bus',
+    {
+      'type': 'modules/bus',
       'displayTime': 20,
       'parameters': {'stops': [
         {'Agency': 'Metrobus',
@@ -39,10 +39,10 @@ var config = {
       ],
       'filter': 1,
       'title': 'Silver Spring buses'}
-    },*/
+    },
     {
-      'type': 'Bikeshare',
-      'displayTime': 15,
+      'type': 'modules/bikeshare',
+      'displayTime': 5,
       'parameters': {'system': 'Capital Bikeshare',
                      'stations': ['127', '128']}
     },
