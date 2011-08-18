@@ -5,7 +5,7 @@
     "./plugins/frontends/bikeshare.js",
     "./plugins/frontends/metrorail.js",
     "./plugins/frontends/bus.js",
-    "./plugins/frontends/wx.js"
+    "./plugins/frontends/weather.js"
   ],
   "sources": [
   {
