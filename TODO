@@ -1,7 +1,5 @@
 Server:
 
-* Proper packaging: the modules we need are async, express, mongoskin,
-  redmark, request, socket.io, xml2js, winston, winston-mongodb
 * Capped collection for logs.
 * Add user interface for viewing logs.
 * Real-time stats: last fetch for each source, number of clients connected,
@@ -20,8 +18,6 @@ Client:
 
 Both:
 
-* CoffeeScript?  Is it worth it?
-* If not, at least compile/minify the JS.
 * Stop checking Metrorail predictions after the last train has gone,
   and communicate this fact on the signs.
 
