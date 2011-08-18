@@ -18,12 +18,11 @@ Client:
 
 Both:
 
-* Stop checking Metrorail predictions after the last train has gone,
-  and communicate this fact on the signs.
+* Only update services when they are actually operating;
+  communicate on the sign when the last train has gone, etc.
 
 Other data sources:
 
-* BART ETD (good for demonstrating modularity)
 * Air quality (http://www.airnowgateway.org/, requires registration
   and is excessively bureaucratic)
 * Weather forecast (http://www.weather.gov/forecasts/xml/)
