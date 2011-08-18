@@ -57,63 +57,70 @@ define(['jquery', 'cycle', 'strftime', 'socket', 'require', 'async'],
         });
       }
 
+      function doSetup(socket, config) {
+        socket.emit('set weather', config.weather_id, function() {
+          updateWX(socket);
+          setInterval(function() {updateWX(socket);}, 1800000);
+        });
+
+        var slidecontainer = $('#slidecontainer');
+        var iconcontainer = $('#icons');
+
+        async.forEachSeries(config.slides,
+           function(moduleConfig, callback) {
+             var moduleDiv = $('<div />')[0];
+             slidecontainer.append(moduleDiv);
+
+             require([moduleConfig.type],
+             function(modConstructor) {
+               var theModule = new modConstructor(moduleDiv, socket,
+                                        moduleConfig.parameters);
+               theModule.displayTime = moduleConfig.displayTime || 30;
+               $(moduleDiv).data('module', theModule);
+               iconcontainer.append($('<img>').attr(
+               {'src': theModule.icon,
+                 'id': iconID(theModule) }));
+               $(moduleDiv).hide();
+               callback(null);
+             });
+           }, function(err) {
+             if (err) {
+               console.log(err);
+             } else {
+               //all slides configured, start cycle
+               slidecontainer.cycle({
+                 fx: 'fade',
+                 timeout: 20000,
+                 containerResize: 0,
+                 slideResize: 0,
+                 before: onBefore,
+                 timeoutFn: findTimeout
+               });}
+           });
+      }
+
       function onReady() {
         doTopRight();
-
         var socket = io.connect();
-
-        socket.on('error', function(err) {
-          console.log(err);
-        });
 
         socket.on('connect', function() {
           //This gets called when we reconnect as well;
           //take heed!
           console.log('connected');
-          socket.emit('set weather', config.weather_id, function() {
-            updateWX(socket);
-            setInterval(function() {updateWX(socket);}, 1800000);
+
+          var signName = window.location.hash.substr(1);
+
+          socket.emit('get config', signName, function(config) {
+            doSetup(socket, config);
           });
-
-          var slidecontainer = $('#slidecontainer');
-          var iconcontainer = $('#icons');
-
-          async.forEachSeries(config.slides,
-              function(moduleConfig, callback) {
-                var moduleDiv = $('<div />')[0];
-                slidecontainer.append(moduleDiv);
-
-                require([moduleConfig.type],
-                        function(modConstructor) {
-                 var theModule = new modConstructor(moduleDiv, socket,
-                                                    moduleConfig.parameters);
-                 theModule.displayTime = moduleConfig.displayTime || 30;
-                 $(moduleDiv).data('module', theModule);
-                 iconcontainer.append($('<img>').attr(
-                 {'src': theModule.icon,
-                   'id': iconID(theModule) }));
-                 $(moduleDiv).hide();
-                 callback(null);
-               });
-             }, function(err) {
-               if (err) {
-                 console.log(err);
-               } else {
-                 //all slides configured, start cycle
-                 slidecontainer.cycle({
-                   fx: 'fade',
-                   timeout: 20000,
-                   containerResize: 0,
-                   slideResize: 0,
-                   before: onBefore,
-                   timeoutFn: findTimeout
-                 });}
-             });
         });
 
         socket.on('disconnect', function() {
           $('body').html('<div style="text-align:center; font-size: 8em;">' +
              'Sign disconnected.</div>');
+        });
+        socket.on('error', function(err) {
+          console.log(err);
         });
       }
       return function() {
