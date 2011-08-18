@@ -1,0 +1,23 @@
+{
+  "weather_id": "KSFO",
+  "slides": [
+    {
+      "type": "modules/bart",
+      "displayTime": 30,
+      "parameters": {"abbr": "EMBR", "filter": -1, "title":"Embarcadero BART"}
+    },
+    {
+      "type": "modules/bus",
+      "displayTime": 30,
+      "parameters": {"stops": [
+        {"Agency": "Muni",
+          "StopID": "16992"},
+        {"Agency": "Muni",
+          "StopID": "17217"}
+      ],
+      "filter": 1,
+      "title": "Embarcadero Muni",
+      "tram":true}
+    } 
+  ]
+}

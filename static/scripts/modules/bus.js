@@ -6,7 +6,10 @@ define(['jquery', 'soy', './bus_template'],
       function BusSlide(div, socket, parameters) {
         this.div = div;
         this.socket = socket;
-        this.icon = 'resources/img/' + ((parameters.tram) ? 'bus.svg' : 'tram.svg');
+        console.log(parameters);
+        console.log(parameters.tram);
+        console.log(!!parameters.tram);
+        this.icon = 'resources/img/' + ((parameters.tram) ? 'tram.svg' : 'bus.svg');
         this.title = parameters.title || 'Buses near here';
         this.name = parameters.name || 'bus-';
         this.name += BusSlide.instanceCount++;
