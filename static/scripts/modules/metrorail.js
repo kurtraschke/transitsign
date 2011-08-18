@@ -18,7 +18,7 @@ define(['jquery', 'marquee', 'soy', './metrorail_template'],
           this.rtus = [this.rtus];
         }
 
-        $(div).attr('id', this.name).addClass('metrorail');
+        $(div).attr('id', this.name).addClass('metrorail').addClass('rail');
 
         soy.renderElement(div, metrorailTemplate.main, {});
         soy.renderElement($('.railpredictions tbody', this.div)[0],

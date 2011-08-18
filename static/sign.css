@@ -24,7 +24,7 @@ body {
     font-size: 2em;
 }
 
-.metrorail table {
+.rail table {
     font-size: 6em;
 }
 
@@ -33,15 +33,15 @@ body {
     white-space: nowrap;
 }
 
-.metrorail table td:not(:first-child) {
+.rail table td:not(:first-child) {
     padding-left: 0.8em;
 }
 
-.metrorail td:not(:last-child) {
+.rail td:not(:last-child) {
     padding-right: 0.8em;
 }
 
-.metrorail thead tr td:last-child {
+.rail thead tr td:last-child {
     padding-right: 0.5em;
 }
 
@@ -52,13 +52,13 @@ body {
     font-size: 4.5em;
 }
 
-.metrorail .ic {
+.rail .ic {
     position: fixed;
     bottom: 1em;
     width: 100%;       
 }
 
-.metrorail .incidents {
+.rail .incidents {
     display: block;
     padding: 0;
     margin: 0;
@@ -69,7 +69,7 @@ body {
     height: 6em;
 }
 
-.metrorail .incidents li {
+.rail .incidents li {
     position: absolute;
     top: -999em;
     left: 0;
