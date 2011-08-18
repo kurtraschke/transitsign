@@ -1,0 +1,35 @@
+{
+  "weather_id": "KDCA",
+  "slides": [
+    {
+      "type": "modules/metrorail",
+      "displayTime": 30,
+      "parameters": {"rtus": ["C05"], "filter": -2}
+    },
+    {
+      "type": "modules/bus",
+      "displayTime": 30,
+      "parameters": {"stops": [
+        {"Agency": "DC Circulator",
+          "StopID": "0136"},
+        {"Agency": "ART",
+          "StopID": "61002"},
+        {"Agency": "Metrobus",
+          "StopID": "6000882"},
+        {"Agency": "Metrobus",
+          "StopID": "6000824"},
+        {"Agency": "Metrobus",
+          "StopID": "6000818"},
+        {"Agency": "Metrobus",
+          "StopID": "6000827"}
+      ],
+      "filter": 1}
+    },
+    {
+      "type": "modules/bikeshare",
+      "displayTime": 15,
+      "parameters": {"system": "Capital Bikeshare",
+                     "stations": ["127", "128"]}
+    }
+  ]
+}
