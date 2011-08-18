@@ -92,6 +92,7 @@ define(['jquery', 'cycle', 'strftime', 'socket', 'require', 'async'],
                  iconcontainer.append($('<img>').attr(
                  {'src': theModule.icon,
                    'id': iconID(theModule) }));
+                 $(moduleDiv).hide();
                  callback(null);
                });
              }, function(err) {
