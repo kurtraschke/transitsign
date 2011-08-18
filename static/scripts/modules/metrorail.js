@@ -42,7 +42,7 @@ define(['jquery', 'marquee', 'soy', './metrorail_template'],
             $('.lnbox', self.div).html(lines.html()).fadeIn(1000);
           },
           aftershow: function($marquee, $li) {
-            $('.lnbox', self.div).hide();
+            //$('.lnbox', self.div).hide();
           }
         });
 
