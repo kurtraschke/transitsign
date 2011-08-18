@@ -1,0 +1,51 @@
+{namespace bartTemplate}
+
+/**
+ * Render the BART container.
+ */
+{template .main}
+<table class="railpredictions">
+<thead>
+  <tr><td>Train</td><td>Minutes</td></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+<div class="ic">
+<ul class="incidents">
+</ul>
+</div>
+{/template}
+
+/**
+ * Render BART predictions.
+ * @param predictions BART predictions.
+ */
+{template .predictions}
+{foreach $prediction in $predictions}
+<tr><td style="color: {$prediction.hexcolor};">{$prediction.destinationName}</td><td>{call .time}{param time: $prediction.minutes /}{/call}</td></tr>
+{/foreach}
+{/template}
+
+/**
+ * Render BART incidents.
+ * @param incidents BART incidents.
+ */
+{template .incidents}
+{foreach $incident in $incidents}
+<li>{$incident.description}</li>
+{/foreach}
+{/template}
+
+/**
+ * Render BART prediction time.
+ * @param time Prediction time.
+ */
+{template .time}
+{if $time == -1}
+Arrived
+{else}
+{$time}
+{/if}
+{/template}

@@ -4,6 +4,7 @@
   "frontends": [
     "./plugins/frontends/bikeshare.js",
     "./plugins/frontends/metrorail.js",
+    "./plugins/frontends/bart.js",
     "./plugins/frontends/bus.js",
     "./plugins/frontends/wx.js"
   ],
@@ -12,10 +13,18 @@
     "name": "wmata/metrorail",
     "interval": 20
   },
-  {
+  /*{
     "name": "wmata/incidents",
     "interval": 60
+  },*/
+  { 
+    "name": "bart/trains",
+    "interval": 20
   },
+  /*{
+    "name": "bart/incidents",
+    "interval": 60
+  },*/
   {
     "name": "bus",
     "interval": 60,
@@ -32,6 +41,10 @@
         "DC Circulator": {
           "source": "generic/nextbus",
           "parameters": ["dc-circulator", "DC Circulator"]
+        },
+        "Muni": {
+          "source": "generic/nextbus",
+          "parameters": ["sf-muni", "Muni"]
         }
       }
           ]
