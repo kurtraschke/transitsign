@@ -1,0 +1,31 @@
+Cities which have been tested and for which there are sample configurations:
+
+* Washington, D.C.
+  * Metrorail predictions and incidents
+  * Metrobus predictions
+  * ART predictions (Connexionz)
+  * DC Circulator predictions (NextBus)
+  * Capital Bikeshare status (PBSC)
+* San Francisco
+  * BART predictions and incidents
+  * Muni predictions (NextBus)
+
+Cities which should work, but have not been tested:
+
+* Toronto
+  * TTC bus and streetcar predictions (NextBus)
+    (Obviously, there's no rail data.)
+  * BIXI Toronto status
+* Any other city which uses NextBus, Connexionz
+* Any other city with a B-cycle, or PBSC bike sharing system
+
+Cities which need coding done for a proprietary API:
+
+* Chicago
+  * B-cycle status (already done)
+  * BusTracker (uses the Clever API; need to write a generic module for it)
+  * TrainTracker (custom API)
+* Boston
+  * Hubway status (a PBSC system)
+  * MBTA bus predictions (NextBus)
+  * MBTA rail predictions (custom API)

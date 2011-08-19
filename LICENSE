@@ -2,14 +2,13 @@ The following terms apply to the files in this distribution, with the
 exception of the following, which are licensed according to the terms
 in their respective headers, unless otherwise noted:
 
+* lib/ext/*
 * static/resources/css/reset.css
-* static/resources/js/jquery.marquee.js
-* static/resources/js/jquery.cycle.all.js
-* static/resources/js/soyutils.js
-* static/resources/js/strftime.js
+* static/scripts/ext/*
 * static/resource/img/bike.svg (Public domain)
 * static/resource/img/bus.svg (Public domain)
 * static/resource/img/rail.svg (Public domain)
+* static/resource/img/tram.svg (extracted from MUTCD; work of the Federal government)
 
 
 Copyright (c) 2011 Kurt Raschke

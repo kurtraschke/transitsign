@@ -14,7 +14,9 @@ Client:
   but it's not designed for that).
 * Related: the server should have a way to tell the client that data has
   gone stale.
-* Improve configuration mechanism.
+* Improve configuration mechanism: we now store the configuration in
+  MongoDB, which is a good step, but we also need a GUI configurator
+  to generate the configuration documents and save them to the database.
 
 Both:
 
@@ -29,3 +31,4 @@ Other data sources:
 * FAA air traffic delays (might be good for intermodal transit centers
   at airports or which provide service to an airport):
   http://www.fly.faa.gov/flyfaa/xmlAirportStatus.jsp
+* See CITIES for more on transit data sources.
