@@ -47,6 +47,10 @@
         "Muni": {
           "source": "generic/nextbus",
           "parameters": ["sf-muni", "Muni"]
+        },
+        "TriMet": {
+          "source": "trimet/trimet",
+          "parameters": ["TriMet"]
         }
       }
           ]

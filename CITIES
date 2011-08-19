@@ -9,6 +9,8 @@ Cities which have been tested and for which there are sample configurations:
 * San Francisco
   * BART predictions and incidents
   * Muni predictions (NextBus)
+* Portland
+  * TriMet predictions
 
 Cities which should work, but have not been tested:
 
@@ -16,7 +18,7 @@ Cities which should work, but have not been tested:
   * TTC bus and streetcar predictions (NextBus)
     (Obviously, there's no rail data.)
   * BIXI Toronto status
-* Any other city which uses NextBus, Connexionz
+* Any other city which uses NextBus or Connexionz for AVL
 * Any other city with a B-cycle, or PBSC bike sharing system
 
 Cities which need coding done for a proprietary API:

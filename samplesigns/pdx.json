@@ -1,0 +1,30 @@
+{
+  "weather_id": "KPDX",
+  "slides": [
+    {
+      "type": "modules/bus",
+      "displayTime": 30,
+      "parameters": {"stops": [
+        {"Agency": "TriMet",
+          "StopID": "8334"},
+        {"Agency": "TriMet",
+          "StopID": "8383"},
+        {"Agency": "TriMet",
+          "StopID": "7777"}
+      ],
+      "filter": 1,
+      "title": "Pioneer Courthouse",
+      "tram":true}
+    },
+    {
+      "type": "modules/bus",
+      "displayTime": 30,
+      "parameters": {"stops": [
+        {"Agency": "TriMet",
+          "StopID": "7807"}
+      ],
+      "filter": 1,
+      "title": "Pioneer Courthouse"}
+    }
+  ]
+}
