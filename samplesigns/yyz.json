@@ -1,0 +1,24 @@
+{
+  "weather_id": "KJFK", //need a source for Canadian weather
+  "slides": [
+    {
+      "type": "modules/bus",
+      "displayTime": 30,
+      "parameters": {"stops": [
+        {"Agency": "TTC",
+          "StopID": "04192"},
+        {"Agency": "TTC",
+          "StopID": "04191"}
+      ],
+      "filter": 1,
+      "title": "King/University",
+      "tram":true}
+    },
+    {
+      "type": "modules/bikeshare",
+      "displayTime": 15,
+      "parameters": {"system": "BIXI Toronto",
+                     "stations": ["54"]}
+    }
+  ]
+}

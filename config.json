@@ -48,6 +48,10 @@
           "source": "generic/nextbus",
           "parameters": ["sf-muni", "Muni"]
         },
+        "TTC": {
+          "source": "generic/nextbus",
+          "parameters": ["ttc", "TTC"]
+        },
         "TriMet": {
           "source": "trimet/trimet",
           "parameters": ["TriMet"]
@@ -61,7 +65,9 @@
     "parameters": [
         [
           {"name": "Capital Bikeshare",
-          "url": "http://www.capitalbikeshare.com/stations/bikeStations.xml"}
+          "url": "http://www.capitalbikeshare.com/stations/bikeStations.xml"},
+          {"name": "BIXI Toronto",
+           "url": "https://toronto.bixi.com/data/bikeStations.xml"}
           //{"name": "BIXI", "url": "https://www.bixi.com/data/bikeStations.xml"}
         ]
     ]
