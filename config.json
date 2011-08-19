@@ -1,6 +1,7 @@
 {
   "listenport": 8000,
   "db": {"host": "localhost", "port": 27017, "db": "transitsign"},
+  "keyFile": "keys.json",
   "frontends": [
     "./plugins/frontends/config.js",
     "./plugins/frontends/bikeshare.js",
@@ -14,18 +15,18 @@
     "name": "wmata/metrorail",
     "interval": 20
   },
-  /*{
+  {
     "name": "wmata/incidents",
     "interval": 60
-  },*/
+  },
   { 
     "name": "bart/trains",
     "interval": 20
   },
-  /*{
+  {
     "name": "bart/incidents",
     "interval": 60
-  },*/
+  },
   {
     "name": "bus",
     "interval": 60,
