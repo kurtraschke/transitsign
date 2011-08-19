@@ -14,6 +14,7 @@
       ],
       "filter": 1,
       "title": "Pioneer Courthouse",
+      "credit": "Route and arrival data provided by permission of TriMet",
       "tram":true}
     },
     {
@@ -24,7 +25,8 @@
           "StopID": "7807"}
       ],
       "filter": 1,
-      "title": "Pioneer Courthouse"}
+      "title": "Pioneer Courthouse",
+      "credit": "Route and arrival data provided by permission of TriMet"}
     }
   ]
 }

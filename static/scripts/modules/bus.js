@@ -14,15 +14,17 @@ define(['jquery', 'soy', './bus_template'],
 
         $(div).attr('id', this.name).addClass('bus');
 
+        soy.renderElement(div, busTemplate.main, {'credit': parameters.credit || ''});
+        
         //render dummy element for sizing
-        soy.renderElement(div, busTemplate.main,
+        soy.renderElement($('.buspredictions', div)[0], busTemplate.predictions,
            {'buses': [{'Minutes': 10, 'Agency': 'Test Agency',
              'RouteID': 'Route', 'StopName': 'Stop Name',
              'DirectionText': 'Direction Text'}]});
 
         this.numBuses = Math.floor(
-           ($(window).height() - $('#header').outerHeight()) /
-           $(div).children(':first').outerHeight()) * 2;
+           ($(window).height() - $('#header').outerHeight() - $('.credit', div).outerHeight()) /
+           $('.buspredictions', div).children(':first').outerHeight()) * 2;
 
         socket.emit('subscribe buses', parameters.stops);
 
@@ -39,7 +41,7 @@ define(['jquery', 'soy', './bus_template'],
            function(response) {
              response = response.buses;
 
-             soy.renderElement(div, busTemplate.main,
+             soy.renderElement($('.buspredictions', div)[0], busTemplate.predictions,
              {'buses': response.slice(0, numBuses)}
              );
            });

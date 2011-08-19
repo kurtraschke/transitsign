@@ -2,9 +2,19 @@
 
 /**
  * Render the bus predictions container.
- * @param buses Bus predictions
+ * @param credit Agency credit text
  */
 {template .main}
+<div class="buspredictions">
+</div>
+<div class="credit">{$credit}</div>
+{/template}
+
+/**
+ * Render the bus predictions container.
+ * @param buses Bus predictions
+ */
+{template .predictions}
 {foreach $bus in $buses}
 <div class="busprediction">
 <div class="minutes">{$bus.Minutes}</div>       
