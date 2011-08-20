@@ -21,7 +21,13 @@
 <div>
 <span class="route">{$bus.Agency} {$bus.RouteID}</span><br>
 {$bus.StopName}<br>
-{$bus.DirectionText}
+{if $bus.DirectionText and $bus.DestinationName }
+<span class="direction">{$bus.DirectionText}</span> to <span class="destination">{$bus.DestinationName}</span>
+{elseif $bus.DirectionText}
+<span class="direction">{$bus.DirectionText}</span>
+{elseif $bus.DestinationName}
+<span class="destination">{$bus.DestinationName}</span>
+{/if}
 </div>
 </div>
 {/foreach}
