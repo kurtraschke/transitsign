@@ -45,7 +45,7 @@
  * Render Metrorail lines in incident marquee.
  * @param lines Metrorail lines affected.
  */
-{template .lines}
+{template .lines private="true"}
 {foreach $line in $lines}
 <span class="{$line|id}">{$line}</span>{if not isLast($line)}, {/if}
 {/foreach}
@@ -55,7 +55,7 @@
  * Render Metrorail prediction time.
  * @param time Prediction time.
  */
-{template .time}
+{template .time private="true"}
 {if $time == -2}
 BRD
 {elseif $time == -1}
@@ -69,7 +69,7 @@ ARR
  * Render Metrorail prediction time class.
  * @param time Prediction time.
  */
-{template .timeClass}
+{template .timeClass private="true"}
 {if $time < 0}
 class="flash"
 {/if}

@@ -28,7 +28,7 @@
  * Render CTA prediction time.
  * @param prediction Prediction.
  */
-{template .time}
+{template .time private="true"}
 {if $prediction.isApp == '1'}
 Approaching
 {elseif $prediction.isDly == '1'}
@@ -43,7 +43,7 @@ Delayed
  * Render CTA prediction line.
  * @param line Prediction line.
  */
-{template .line}
+{template .line private="true"}
 <span class="{$line|id}">
 {switch $line}
 {case 'Red'}
