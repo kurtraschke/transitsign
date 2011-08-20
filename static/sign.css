@@ -216,3 +216,35 @@ body {
     font-size: 4em;
     margin-bottom: 1em;
 }
+
+.cta .Red {
+    color: #C60C30;
+}
+
+.cta .Blue {
+    color: #00A1DE;
+}
+
+.cta .Brn {
+    color: #62361B;
+}
+
+.cta .G {
+    color: #009B3A;
+}
+
+.cta .Org {
+    color: #F9461C;
+}
+
+.cta .P {
+    color: #522398;
+}
+
+.cta .Pink {
+    color: #E27EA6;
+}
+
+.cta .Y {
+    color: #F9E300;
+}

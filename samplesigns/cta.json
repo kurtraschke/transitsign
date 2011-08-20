@@ -1,0 +1,10 @@
+{
+  "weather_id": "KORD",
+  "slides": [
+    {
+      "type": "modules/cta",
+      "displayTime": 30,
+      "parameters": {"mapid": "40380", "filter": 1, "title":"Clark/Lake"}
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{namespace ctaTemplate}
+
+/**
+ * Render the CTA rail container.
+ */
+{template .main}
+<table class="railpredictions">
+<thead>
+  <tr><td>Line</td><td>Destination</td><td>Minutes</td></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+{/template}
+
+/**
+ * Render CTA predictions.
+ * @param predictions CTA predictions.
+ */
+{template .predictions}
+{foreach $prediction in $predictions}
+<tr><td>{call .line}{param line: $prediction.rt /}{/call}</td><td>{$prediction.destNm}</td><td>{call .time}{param prediction: $prediction /}{/call}</td></tr>
+{/foreach}
+{/template}
+
+/**
+ * Render CTA prediction time.
+ * @param prediction Prediction.
+ */
+{template .time}
+{if $prediction.isApp == '1'}
+Approaching
+{elseif $prediction.isDly == '1'}
+Delayed
+{else}
+{$prediction.min}
+{/if}
+{/template}
+
+
+/**
+ * Render CTA prediction line.
+ * @param line Prediction line.
+ */
+{template .line}
+<span class="{$line|id}">
+{switch $line}
+{case 'Red'}
+Red
+{case 'Blue'}
+Blue
+{case 'Brn'}
+Brown
+{case 'G'}
+Green
+{case 'Org'}
+Orange
+{case 'P'}
+Purple
+{case 'Pink'}
+Pink
+{case 'Y'}
+Yellow
+{/switch}
+</span>
+{/template}
