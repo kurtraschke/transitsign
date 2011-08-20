@@ -1,6 +1,7 @@
 define(['jquery', 'marquee', 'soy', './bart_template'],
        function(_jquery, _marquee, _soy, _template) {
-         BARTSlide.instanceCount = 1;
+
+      BARTSlide.instanceCount = 1;
 
       function BARTSlide(div, socket, parameters) {
         var self = this;
@@ -20,14 +21,14 @@ define(['jquery', 'marquee', 'soy', './bart_template'],
         $(div).attr('id', this.name).addClass('bart').addClass('rail');
 
         soy.renderElement(div, bartTemplate.main, {});
-        
+
 
         this.marquee = $('.incidents', this.div);
 
 
         this.marquee.marquee({
           yScroll: 'bottom', pauseSpeed: 1500,
-          scrollSpeed: 8, pauseOnHover: false,
+          scrollSpeed: 8, pauseOnHover: false
         });
 
         this.marquee.data('state', 'running');
@@ -76,7 +77,7 @@ define(['jquery', 'marquee', 'soy', './bart_template'],
         var self = this;
         this.socket.emit('get bart trains', this.parameters.abbr,
            this.parameters.filter, function(response) {
-             
+
              soy.renderElement($('.railpredictions tbody', self.div)[0],
              bartTemplate.predictions,
              {'predictions': response.trains.slice(0, self.numTrains)});
@@ -107,5 +108,5 @@ define(['jquery', 'marquee', 'soy', './bart_template'],
         }
       };
 
-         return BARTSlide;
-});
+      return BARTSlide;
+    });
