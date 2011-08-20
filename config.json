@@ -59,7 +59,8 @@
         },
         "TriMet": {
           "source": "trimet/trimet",
-          "parameters": ["TriMet"]
+          "parameters": ["TriMet"],
+          "batchSize": 10
         }
       }
           ]
