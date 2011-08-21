@@ -6,6 +6,10 @@ body {
 
 }
 
+#slidecontainer > div {
+    width: 100%;
+}
+
 #topright {
     position:absolute;
     top:0;
@@ -124,23 +128,23 @@ body {
     }
 }
 
-.GR {
+.metrorail .GR {
     color: #009D57;
 }
 
-.RD {
+.metrorail .RD {
     color: #E94333;
 }
 
-.BL {
+.metrorail .BL {
     color: #0D7BBA;
 }
 
-.OR {
+.metrorail .OR {
     color: #F89038;
 }
 
-.YL {
+.metrorail .YL {
     color: #FDE310;
 }
 
@@ -187,7 +191,7 @@ body {
     font-size: 1.6em;
 }
 
-.bus .busprediction div {
+.bus .busprediction .businfo {
     width: 80%;
     margin-bottom: 0.5em;
 }
@@ -195,17 +199,22 @@ body {
 .bus .busprediction .minutes {
     width: 20%;
     text-align: center;
-    font-size: 3.6em;
+    font-size: 2.88em;
     line-height: 1em;
     float: right;
 }
 
-.bus .credit {
+.bus .busprediction .mintag {
+    font-size:0.25em; 
+    line-height: 1em;
+}
+
+.credit {
+    margin-top: 1em;
     font-size: 2em;
     text-align: center;
     clear: both;
 }
-
 
 .bikeshare .station .name {
     font-size: 1.5em;
