@@ -7,6 +7,7 @@
     "./plugins/frontends/bikeshare.js",
     "./plugins/frontends/metrorail.js",
     "./plugins/frontends/bart.js",
+    "./plugins/frontends/mbta.js",
     "./plugins/frontends/cta.js",
     "./plugins/frontends/bus.js",
     "./plugins/frontends/weather.js"
@@ -57,6 +58,10 @@
           "source": "generic/nextbus",
           "parameters": ["ttc", "TTC"]
         },
+        "MBTA": {
+          "source": "generic/nextbus",
+          "parameters": ["mbta", "MBTA"]
+        },
         "TriMet": {
           "source": "trimet/trimet",
           "parameters": ["TriMet"],
@@ -73,7 +78,9 @@
           {"name": "Capital Bikeshare",
           "url": "http://www.capitalbikeshare.com/stations/bikeStations.xml"},
           {"name": "BIXI Toronto",
-           "url": "https://toronto.bixi.com/data/bikeStations.xml"}
+           "url": "https://toronto.bixi.com/data/bikeStations.xml"},
+          {"name": "New Balance Hubway",
+           "url": "http://www.thehubway.com/data/stations/bikeStations.xml"}
           //{"name": "BIXI", "url": "https://www.bixi.com/data/bikeStations.xml"}
         ]
     ]
@@ -82,6 +89,10 @@
     "name": "generic/bcycle",
     "interval": 120
   },*/
+  {
+    "name": "mbta/rail",
+    "interval": 30
+  },
   {
     "name": "weather",
     "interval": 1800

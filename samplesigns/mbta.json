@@ -1,0 +1,31 @@
+{
+  "weather_id": "KBOS",
+  "slides": [
+    {
+      "type": "modules/mbta",
+      "displayTime": 30,
+      "parameters": {"platformKeys": ["BSTAE", "BSTAW", "OSTNN", "OSTSS"], "filter": 1,
+                     "title": "State St. Station"}
+    },
+    {
+      "type": "modules/bus",
+      "displayTime": 30,
+      "parameters": {"stops": [
+        {"Agency": "MBTA",
+          "StopID": "65"},
+        {"Agency": "MBTA",
+          "StopID": "190"}
+      ],
+      "filter": 1,
+      "title": "Buses near here",
+      "credit": "Data provided by MassDOT"}
+    },
+    {
+      "type": "modules/bikeshare",
+      "displayTime": 15,
+      "parameters": {"system": "New Balance Hubway",
+                     "stations": ["23", "44"],
+                     "title": "<span style=\"line-height: 1em; font-size:0.8em;\">New Balance Hubway</span>"}
+    }
+  ]
+}

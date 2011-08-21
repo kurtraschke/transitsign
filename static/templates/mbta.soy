@@ -1,0 +1,27 @@
+{namespace mbtaTemplate}
+
+/**
+ * Render the MBTA rail container.
+ */
+{template .main}
+<table class="railpredictions">
+<thead>
+  <tr><td>Line</td><td>Destination</td><td>Minutes</td></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<div class="credit">
+Data provided by MassDOT
+</div>
+{/template}
+
+/**
+ * Render MBTA predictions.
+ * @param predictions MBTA predictions.
+ */
+{template .predictions}
+{foreach $prediction in $predictions}
+<tr><td class="{$prediction.Line|id}">{$prediction.Line}</td><td>{$prediction.Destination}</td><td>{$prediction.Minutes}</td></tr>
+{/foreach}
+{/template}
