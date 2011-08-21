@@ -13,6 +13,9 @@ define(['jquery', 'soy', './bikeshare_template'],
         this.name += BikeshareSlide.instanceCount++;
 
         $(div).attr('id', this.name).addClass('bikeshare');
+        
+        soy.renderElement(div, bikeshareTemplate.main, {'system': parameters.system,
+                                                        'credit': parameters.credit});
 
         var self = this;
         self.updateBikeshare();
@@ -21,13 +24,13 @@ define(['jquery', 'soy', './bikeshare_template'],
       }
 
       BikeshareSlide.prototype.updateBikeshare = function() {
-        var div = this.div;
+        var div = $('.stations', this.div)[0];
         var stations = this.parameters.stations;
         var system = this.parameters.system;
         this.socket.emit('get bikeshare', system, stations,
            function(response) {
              response = response.bikeshare;
-             soy.renderElement(div, bikeshareTemplate.main,
+             soy.renderElement(div, bikeshareTemplate.stations,
              {'stations': response});
            });
 

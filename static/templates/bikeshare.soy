@@ -1,10 +1,28 @@
 {namespace bikeshareTemplate}
 
+
 /**
- * Render the bikeshare status container.
- * @param stations Bikeshare stations
+ * Render bikeshare status 
+ * @param system System name
+ * @param credit Optional credit line
  */
 {template .main}
+<div class="stations">
+</div>
+<div class="credit">
+{if $credit}
+{$credit}
+{else}
+Data provided by {$system}
+{/if}
+</div>
+{/template}
+
+/**
+ * Render the bikeshare station status.
+ * @param stations Bikeshare stations
+ */
+{template .stations}
 {foreach $station in $stations}
 <div class="station">
 <div class="name">{$station.name}</div>
