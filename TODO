@@ -11,6 +11,10 @@ Client:
   actually bad for signage applications like this as it's prone to halation
   problems.  We'll try Droid Sans for now.
 * Canadian weather, metric units
+* Presently we display as many bus predictions as will fit, regardless of time.
+  We may want to only display predictions with in a certain interval (one hour,
+  for example), or otherwise improve formatting for distant predictions--show 
+  them as "1:24" rather than "84 minutes" or "at 4:30" (using the absolute time).
 * Fix reconnect bug (on reconnect, the initialization routine runs again,
   but it's not designed for that).
 * Related: the server should have a way to tell the client that data has

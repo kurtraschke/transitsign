@@ -23,7 +23,7 @@ Cities which have been tested and for which there are sample configurations:
 Cities which should work, but have not been tested:
 
 * Any other city which uses NextBus or Connexionz for AVL
-* Any other city with a B-cycle, or PBSC bike sharing system
+* Any other city with a B-cycle or PBSC bike sharing system
 
 Cities which need coding done for one or more proprietary APIs:
 
@@ -33,5 +33,13 @@ Cities which need coding done for one or more proprietary APIs:
   * TrainTracker (proprietary API)
   * PACE (uses AVL from Trapeze (ex Siemens) which appears not to have an API)
 * Minneapolis
-  * Nice Ride status (PBSC)
-  * Metro Transit predictions (no official API, see screen-scraper at https://github.com/cmaul/MetroTransit-API)
+  * Nice Ride status (PBSC, http://secure.niceridemn.org/data2/bikeStations.xml)
+  * Metro Transit predictions (no official API, vendor unknown, see screen-scraper at https://github.com/cmaul/MetroTransit-API)
+* London
+  * Barclays Cycle Hire (PBSC, requires registration!)
+  * Underground predictions (custom API for Trackernet)
+  * DLR predictions (no official API available)
+  * Bus predictions (no official API available)
+* Melbourne
+  * Melbourne Bike Share status (PBSC, http://www.melbournebikeshare.com.au/sites/default/files/XML/stations.xml)
+  * Yarra Trams (undocumented JSON API, see http://extranetdev.yarratrams.com.au/pidsservicejson/)
