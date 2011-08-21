@@ -1,12 +1,13 @@
-define(['jquery', 'soy', './bus_template'],
-       function(_jquery, _soy, _template) {
+define(['jquery', 'soy', '../tools', './bus_template'],
+       function(_jquery, _soy, tools, _template) {
 
       BusSlide.instanceCount = 1;
 
       function BusSlide(div, socket, parameters) {
         this.div = div;
         this.socket = socket;
-        this.icon = 'resources/img/' + ((parameters.tram) ? 'tram.svg' : 'bus.svg');
+        this.icon = 'resources/img/' +
+           ((parameters.tram) ? 'tram.svg' : 'bus.svg');
         this.title = parameters.title || 'Buses near here';
         this.name = parameters.name || 'bus-';
         this.name += BusSlide.instanceCount++;
@@ -14,17 +15,18 @@ define(['jquery', 'soy', './bus_template'],
 
         $(div).attr('id', this.name).addClass('bus');
 
-        soy.renderElement(div, busTemplate.main, {'credit': parameters.credit || ''});
-        
-        //render dummy element for sizing
-        soy.renderElement($('.buspredictions', div)[0], busTemplate.predictions,
-           {'buses': [{'Minutes': 10, 'Agency': 'Test Agency',
-             'RouteID': 'Route', 'StopName': 'Stop Name',
-             'DirectionText': 'Direction Text'}]});
+        soy.renderElement(div, busTemplate.main,
+                          {'credit': parameters.credit || ''});
 
-        this.numBuses = Math.floor(
-           ($(window).height() - $('#header').outerHeight() - $('.credit', div).outerHeight()) /
-           $('.buspredictions', div).children(':first').outerHeight()) * 2;
+        this.numBuses = tools.autoSizer(
+           $('.buspredictions', div)[0],
+           busTemplate.predictions,
+            {'buses': [{'Minutes': 10, 'Agency': 'Test Agency',
+             'RouteID': 'Route', 'StopName': 'Stop Name',
+             'DirectionText': 'Direction Text'}]},
+           $('.credit', div).outerHeight());
+
+        this.numBuses *= 2; //two columns of buses
 
         socket.emit('subscribe buses', parameters.stops);
 
@@ -41,8 +43,9 @@ define(['jquery', 'soy', './bus_template'],
            function(response) {
              response = response.buses;
 
-             soy.renderElement($('.buspredictions', div)[0], busTemplate.predictions,
-             {'buses': response.slice(0, numBuses)}
+             soy.renderElement($('.buspredictions', div)[0],
+                               busTemplate.predictions,
+                               {'buses': response.slice(0, numBuses)}
              );
            });
       };

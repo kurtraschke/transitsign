@@ -1,5 +1,5 @@
-define(['jquery', 'marquee', 'soy', './bart_template'],
-       function(_jquery, _marquee, _soy, _template) {
+define(['jquery', 'marquee', 'soy', '../tools', './bart_template'],
+       function(_jquery, _marquee, _soy, tools, _template) {
 
       BARTSlide.instanceCount = 1;
 
@@ -12,19 +12,12 @@ define(['jquery', 'marquee', 'soy', './bart_template'],
         this.title = parameters.title || 'BART';
         this.name = parameters.name || 'bart-';
         this.name += BARTSlide.instanceCount++;
-        this.rtus = parameters.rtus;
-
-        if (!(this.rtus instanceof Array)) {
-          this.rtus = [this.rtus];
-        }
 
         $(div).attr('id', this.name).addClass('bart').addClass('rail');
 
         soy.renderElement(div, bartTemplate.main, {});
 
-
         this.marquee = $('.incidents', this.div);
-
 
         this.marquee.marquee({
           yScroll: 'bottom', pauseSpeed: 1500,
@@ -33,25 +26,14 @@ define(['jquery', 'marquee', 'soy', './bart_template'],
 
         this.marquee.data('state', 'running');
 
-        /*var newsize, dh, oneRow, empx, estCrawlHeight,
-           availableSpace, error;
-
-        newsize = (($(window).width() / $('.railpredictions',
-           this.div).outerWidth()) * 95);
-        $(div).css('font-size', newsize + '%');
-
-        dh = $('.railpredictions thead tr td:nth-child(3)', this.div);
-        dh.css('width', dh.innerWidth());
-
-        oneRow = $('.railpredictions tbody tr', this.div).outerHeight();
-        empx = (10 * newsize) / 62.5;
-        estCrawlHeight = 6 * empx;
-        availableSpace = $(window).height() - $('#header').outerHeight() -
-           $('.railpredictions', this.div).outerHeight() + oneRow -
-           estCrawlHeight;
-
-        this.numTrains = Math.floor(availableSpace / oneRow);*/
-        this.numTrains = 6;
+        this.numTrains = tools.autoSizer(
+           $('.railpredictions tbody', self.div)[0],
+           bartTemplate.predictions,
+           {predictions: [{hexcolor: '#FFFFFF',
+                            destinationName: 'Destination',
+                            minutes: 0}]},
+           6 * tools.emSize($('body')) //space for marquee
+           );
 
         self.updateTrains();
         self.updateIncidents();

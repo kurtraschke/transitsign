@@ -1,5 +1,5 @@
-define(['jquery', 'soy', './cta_template'],
-       function(_jquery, _soy, _template) {
+define(['jquery', 'soy', '../tools', './cta_template'],
+       function(_jquery, _soy, tools, _template) {
 
       CTASlide.instanceCount = 1;
 
@@ -17,7 +17,11 @@ define(['jquery', 'soy', './cta_template'],
 
         soy.renderElement(div, ctaTemplate.main, {});
 
-        this.numTrains = 6; //TODO: replace with auto-sizing
+        this.numTrains = tools.autoSizer(
+           $('.railpredictions tbody', self.div)[0],
+           ctaTemplate.predictions,
+           {predictions: [{rt: 'Blue', destNm: 'O\'Hare', min: 3}]},
+           0);
 
         socket.emit('subscribe cta stop', this.parameters.mapid);
 
