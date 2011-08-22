@@ -19,14 +19,13 @@ define(['jquery', 'soy', '../tools', './bus_template'],
                           {'credit': parameters.credit || ''});
         
         var columns;
-        
+
         if (parameters.oneCol) {
-            console.log('onecol');
-            $(div).addClass('onecol');
-            columns = 1;
+          $(div).addClass('onecol');
+          columns = 1;
         } else {
-            $(div).addClass('twocol');
-            columns = 2;
+          $(div).addClass('twocol');
+          columns = 2;
         }
 
         this.numBuses = tools.autoSizer(
