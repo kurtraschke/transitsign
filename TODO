@@ -4,12 +4,14 @@ Server:
 * Add user interface for viewing logs.
 * Real-time stats: last fetch for each source, number of clients connected,
   number of calls per API per day, etc.
+* We should probably set an appropriate User-agent on requests.
 
 Client:
 
 * High priority: better font.  Helvetica may seem appropriate, but it's 
   actually bad for signage applications like this as it's prone to halation
   problems.  We'll try Droid Sans for now.
+* Time format should be customizable.
 * Weather should be made generic (see discussion of sources, below).
 * Presently we display as many bus predictions as will fit, regardless of time.
   We may want to only display predictions with in a certain interval (one hour,

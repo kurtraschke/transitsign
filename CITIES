@@ -13,8 +13,9 @@ Cities which have been tested and for which there are sample configurations:
   * TriMet predictions
 * Toronto
   * TTC bus and streetcar predictions (NextBus)
-    (Obviously, there's no rail data.)
   * BIXI Toronto status
+  * YRT/Viva predictions (INIT AVL coupled to Trapeze; no apparent public API)
+  * TTC rail predictions (not happening any time soon)
 * Boston
   * Hubway status (PBSC, http://www.thehubway.com/data/stations/bikeStations.xml)
   * MBTA bus predictions (NextBus)

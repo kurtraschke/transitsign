@@ -23,7 +23,8 @@
         {"Agency": "Metrobus",
           "StopID": "6000827"}
       ],
-      "filter": 1}
+      "filter": 1,
+      "oneCol": true}
     },
     {
       "type": "modules/bikeshare",

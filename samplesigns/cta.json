@@ -5,6 +5,19 @@
       "type": "modules/cta",
       "displayTime": 30,
       "parameters": {"mapid": "40380", "filter": 1, "title":"Clark/Lake"}
-    }
+    }/*,
+    {
+      "type": "modules/bus",
+      "displayTime": 30,
+      "parameters": {"stops": [
+        {"Agency": "CTA",
+          "StopID": "1864"},
+        {"Agency": "CTA",
+          "StopID": "1885"}
+      ],
+      "filter": 1,
+      "title": "Buses near here",
+      "credit": "Data provided by Chicago Transit Authority."}
+    }*/
   ]
 }
