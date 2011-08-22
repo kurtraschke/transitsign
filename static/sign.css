@@ -181,14 +181,18 @@ body {
     width: 100%;
 }
 
-.bus .busprediction {
+.bus.onecol .busprediction {
+    font-size: 4em;
+}
+
+.bus.twocol .busprediction {
     font-size: 2.2em;
     width: 50%;
     float: left;
 }
 
 .bus .busprediction .route {
-    font-size: 1.6em;
+    font-size: 1.5em;
 }
 
 .bus .busprediction .businfo {
@@ -199,7 +203,7 @@ body {
 .bus .busprediction .minutes {
     width: 20%;
     text-align: center;
-    font-size: 2.88em;
+    font-size: 2.8em;
     line-height: 1em;
     float: right;
 }

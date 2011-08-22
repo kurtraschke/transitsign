@@ -12,7 +12,8 @@
       ],
       "filter": 1,
       "title": "King/University",
-      "tram":true}
+      "tram":true,
+      "oneCol":true}
     },
     {
       "type": "modules/bikeshare",

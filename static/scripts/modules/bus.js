@@ -17,6 +17,17 @@ define(['jquery', 'soy', '../tools', './bus_template'],
 
         soy.renderElement(div, busTemplate.main,
                           {'credit': parameters.credit || ''});
+        
+        var columns;
+        
+        if (parameters.oneCol) {
+            console.log('onecol');
+            $(div).addClass('onecol');
+            columns = 1;
+        } else {
+            $(div).addClass('twocol');
+            columns = 2;
+        }
 
         this.numBuses = tools.autoSizer(
            $('.buspredictions', div)[0],
@@ -26,7 +37,7 @@ define(['jquery', 'soy', '../tools', './bus_template'],
              'DirectionText': 'Direction Text'}]},
            $('.credit', div).outerHeight());
 
-        this.numBuses *= 2; //two columns of buses
+        this.numBuses *= columns;
 
         socket.emit('subscribe buses', parameters.stops);
 
