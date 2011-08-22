@@ -10,7 +10,7 @@ Client:
 * High priority: better font.  Helvetica may seem appropriate, but it's 
   actually bad for signage applications like this as it's prone to halation
   problems.  We'll try Droid Sans for now.
-* Canadian weather, metric units
+* Weather should be made generic (see discussion of sources, below).
 * Presently we display as many bus predictions as will fit, regardless of time.
   We may want to only display predictions with in a certain interval (one hour,
   for example), or otherwise improve formatting for distant predictions--show 
@@ -33,6 +33,8 @@ Other data sources:
 * Air quality (http://www.airnowgateway.org/, requires registration
   and is excessively bureaucratic)
 * Weather forecast (http://www.weather.gov/forecasts/xml/)
+* Canadian weather (http://dd.weatheroffice.gc.ca/)
+* Australian weather (ftp://ftp2.bom.gov.au/anon/gen/fwo)
 * FAA air traffic delays (might be good for intermodal transit centers
   at airports or which provide service to an airport):
   http://www.fly.faa.gov/flyfaa/xmlAirportStatus.jsp

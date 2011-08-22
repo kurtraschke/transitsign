@@ -1,0 +1,26 @@
+{
+  "weather_id": "KBOS", //need Australian weather now, too.
+  "slides": [
+    {
+      "type": "modules/bus",
+      "displayTime": 30,
+      "parameters": {"stops": [
+        {"Agency": "Yarra Trams",
+          "StopID": "3011"},
+        {"Agency": "Yarra Trams",
+          "StopID": "3406"}
+      ],
+      "filter": 1,
+      "title": "Trams here",
+      "credit": "Data provided by Yarra Trams",
+      "tram": true}
+    },
+    {
+      "type": "modules/bikeshare",
+      "displayTime": 15,
+      "parameters": {"system": "Melbourne Bike Share",
+                     "stations": ["7", "45"/*, "10", "4"*/],
+                     "title": "<span style=\"line-height: 1em; font-size:0.8em;\">Melbourne Bike Share</span>"}
+    }
+  ]
+}

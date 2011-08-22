@@ -19,6 +19,9 @@ Cities which have been tested and for which there are sample configurations:
   * Hubway status (PBSC, http://www.thehubway.com/data/stations/bikeStations.xml)
   * MBTA bus predictions (NextBus)
   * MBTA rail predictions (proprietary API)
+* Melbourne
+  * Melbourne Bike Share status (PBSC, http://www.melbournebikeshare.com.au/sites/default/files/XML/stations.xml)
+  * Yarra Trams (undocumented JSON API, see http://extranetdev.yarratrams.com.au/pidsservicejson/)
 
 Cities which should work, but have not been tested:
 
@@ -40,6 +43,3 @@ Cities which need coding done for one or more proprietary APIs:
   * Underground predictions (custom API for Trackernet)
   * DLR predictions (no official API available)
   * Bus predictions (no official API available)
-* Melbourne
-  * Melbourne Bike Share status (PBSC, http://www.melbournebikeshare.com.au/sites/default/files/XML/stations.xml)
-  * Yarra Trams (undocumented JSON API, see http://extranetdev.yarratrams.com.au/pidsservicejson/)
