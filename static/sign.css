@@ -265,6 +265,29 @@ body {
     color: #F9E300;
 }
 
+.cta tbody tr {
+    line-height: 1.2em;
+    background-color: #565a5c;
+}
+
+.cta tr td:first-child {
+    padding-left: 0.5em;
+    border-top-left-radius: 0.25em;
+    border-bottom-left-radius: 0.25em;
+
+}
+
+.cta tr td:last-child {
+    border-top-right-radius: 0.25em;
+    border-bottom-right-radius: 0.25em;
+    padding-right: 0.5em;
+}
+
+.cta table {
+    border-collapse: separate;
+    border-spacing: 0 0.10em;
+}
+
 .mbta .Red {
     color: #DC241F;
 }
