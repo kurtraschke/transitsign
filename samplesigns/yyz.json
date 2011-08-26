@@ -3,7 +3,7 @@
   "slides": [
     {
       "type": "modules/bus",
-      "displayTime": 30,
+      "displayTime": 20,
       "parameters": {"stops": [
         {"Agency": "TTC",
           "StopID": "04192"},
@@ -13,6 +13,31 @@
       "filter": 1,
       "title": "King/University",
       "tram":true,
+      "oneCol":true}
+    },
+    {
+      "type": "modules/bus",
+      "displayTime": 20,
+      "parameters": {"stops": [
+        {"Agency": "TTC",
+          "StopID": "04736"}
+      ],
+      "filter": 1,
+      "title": "King/York",
+      "tram":true,
+      "oneCol":true}
+    },
+    {
+      "type": "modules/bus",
+      "displayTime": 20,
+      "parameters": {"stops": [
+        {"Agency": "TTC",
+          "StopID": "10897"},
+        {"Agency": "TTC",
+          "StopID": "11007"}
+      ],
+      "filter": 1,
+      "title": "Buses near here",
       "oneCol":true}
     },
     {
