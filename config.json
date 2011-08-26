@@ -70,6 +70,11 @@
         "Yarra Trams": {
           "source": "yarratrams/trams",
           "parameters": ["Yarra Trams"]
+        },
+        "CTA": {
+          "source": "generic/clever",
+          "parameters": ["http://ctabustracker.com", "CTA", "CTABus"],
+          "batchSize": 10
         }
       }
           ]
@@ -91,10 +96,10 @@
         ]
     ]
   },
-  /*{
+  {
     "name": "generic/bcycle",
     "interval": 120
-  },*/
+  },
   {
     "name": "mbta/rail",
     "interval": 30

@@ -4,20 +4,28 @@
     {
       "type": "modules/cta",
       "displayTime": 30,
-      "parameters": {"mapid": "40380", "filter": 1, "title":"Clark/Lake"}
-    }/*,
+      "parameters": {"mapid": "40850", "filter": 1, 
+                     "title":"<span style=\"line-height: 1em; font-size:0.8em;\">Library-State/Van Buren</span>"
+                    }
+    },
     {
       "type": "modules/bus",
       "displayTime": 30,
       "parameters": {"stops": [
         {"Agency": "CTA",
-          "StopID": "1864"},
+          "StopID": "1113"},
         {"Agency": "CTA",
-          "StopID": "1885"}
+          "StopID": "1430"}
       ],
       "filter": 1,
       "title": "Buses near here",
       "credit": "Data provided by Chicago Transit Authority."}
-    }*/
+    },
+    {
+      "type": "modules/bikeshare",
+      "displayTime": 15,
+      "parameters": {"system": "B-cycle",
+                     "stations": ["1772"]}
+    }
   ]
 }

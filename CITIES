@@ -23,6 +23,11 @@ Cities which have been tested and for which there are sample configurations:
 * Melbourne
   * Melbourne Bike Share status (PBSC, http://www.melbournebikeshare.com.au/sites/default/files/XML/stations.xml)
   * Yarra Trams (undocumented JSON API, see http://extranetdev.yarratrams.com.au/pidsservicejson/)
+* Chicago
+  * B-cycle status (already done)
+  * BusTracker (uses the Clever API; need to write a generic module for it)
+  * TrainTracker (proprietary API)
+  * PACE (uses AVL from Trapeze (ex Siemens) which appears not to have an API)
 
 Cities which should work, but have not been tested:
 
@@ -31,11 +36,6 @@ Cities which should work, but have not been tested:
 
 Cities which need coding done for one or more proprietary APIs:
 
-* Chicago
-  * B-cycle status (already done)
-  * BusTracker (uses the Clever API; need to write a generic module for it)
-  * TrainTracker (proprietary API)
-  * PACE (uses AVL from Trapeze (ex Siemens) which appears not to have an API)
 * Minneapolis
   * Nice Ride status (PBSC, http://secure.niceridemn.org/data2/bikeStations.xml)
   * Metro Transit predictions (no official API, vendor unknown, see screen-scraper at https://github.com/cmaul/MetroTransit-API)
