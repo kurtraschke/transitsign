@@ -1,0 +1,16 @@
+{namespace logsTemplate}
+
+/**
+ * Render log entries.
+ * @param logs Log entries.
+ */
+{template .logs}
+{foreach $logEntry in $logs}
+<tr id="{$logEntry._id|id}">
+<td class="timestamp">{$logEntry.timestampHTML|noAutoescape}</td>
+<td class="level-{$logEntry.level|id}">{$logEntry.level}</td>
+<td>{$logEntry.message}</td>
+<td class="data"></td>
+</tr>
+{/foreach}
+{/template}

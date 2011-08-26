@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="resources/css/blueprint/screen.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="resources/css/blueprint/print.css" type="text/css" media="print">
+<!--[if lt IE 8]>
+  <link rel="stylesheet" href="resources/css/blueprint/ie.css" type="text/css" media="screen, projection">
+<![endif]--></code></pre>
+<link rel="stylesheet" href="logs.css">
+
+<script data-main="scripts/logs" src="scripts/require.js"></script>
+<title>Logs</title>
+</head>
+
+<body>
+<div class="container">
+<div class="span-24">
+<h1>Log Viewer</h1>
+</div>
+<div class="span-24">
+  <form id="logForm" class="inline">
+  <fieldset>
+  <legend>Viewer Options</legend>
+  <div class="span-4">
+    <label for="logLevel">Log level:</label>
+      <select id="logLevel" name="logLevel">
+        <option value="debug">debug</option>
+        <option value="info">info</option>
+        <option value="warn">warn</option>
+        <option value="error">error</option>
+      </select>
+    </div>
+    <div class="span-6">
+      <label for="logQuantity">Quantity:</label>
+      <input id="logQuantity" name="logQuantity" type="number" min="1" max="500" value="100">
+    </div>
+    <div class="span-8 last">
+      <label for="logFilter">Filter:</label>
+      <input id="logFilter" name="logFilter" type="text">
+    </div>
+    <div class="span-4 clear">
+      <label for="logUpdates">Update automatically:</label>
+      <input id="logUpdates" name="logUpdates" type="checkbox" value="checked">
+    </div>
+    <div class="append-12 span-4 last">
+     <input id="logSubmit" name="logSubmit" type="submit" value="Submit" class="button">
+    </div>
+    </fieldset>
+  </form>
+<div class="span-24">
+  <table id="logs">
+<thead>
+<tr><td>Timestamp</td><td>Level</td><td>Message</td><td>Data</td></tr>
+</thead>
+<tbody>
+
+</tbody>
+</table>
+</div>
+</div>
+  
+</body>
+</html>

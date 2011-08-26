@@ -19,8 +19,8 @@
                    "request": "2.0.2",
                    "socket.io": "0.7.8",
                    "xml2js": "0.1.9",
-                   "winston": "0.3.5",
-                   "winston-mongodb": "0.2.0"},
+                   "winston": "0.4.0",
+                   "winston-mongodb": "0.3.0"},
   "devDependencies": {},
   "directories": {"lib": "lib"}
 }

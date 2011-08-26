@@ -3,7 +3,7 @@ exception of the following, which are licensed according to the terms
 in their respective headers, unless otherwise noted:
 
 * lib/ext/*
-* static/resources/css/reset.css
+* static/resources/css/*
 * static/scripts/ext/*
 * static/resource/img/bike.svg (Public domain)
 * static/resource/img/bus.svg (Public domain)
