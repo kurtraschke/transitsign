@@ -116,8 +116,7 @@ define(['jquery', 'cycle', 'strftime', 'socket', 'require', 'async'],
         });
 
         socket.on('disconnect', function() {
-          $('body').html('<div style="text-align:center; font-size: 8em;">' +
-             'Sign disconnected.</div>');
+          $('body').html('<div class="message">Sign disconnected.</div>');
         });
         socket.on('error', function(err) {
           console.log(err);

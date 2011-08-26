@@ -276,3 +276,8 @@ body {
 .mbta .Blue {
     color: #0047B6;
 }
+
+.message {
+    text-align:center;
+    font-size: 8em;
+}

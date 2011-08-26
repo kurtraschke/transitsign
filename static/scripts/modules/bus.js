@@ -59,6 +59,16 @@ define(['jquery', 'soy', '../tools', './bus_template'],
              );
            });
       };
+         
+      BusSlide.prototype.onShow = function() {
+          var div = this.div;
+          var count = $('.busprediction', div).length;
+        
+          if (count == 0) {
+            setTimeout(function(){$('#slidecontainer').cycle('next')}, 2000);
+          }
+        
+      };
 
       return BusSlide;
     });

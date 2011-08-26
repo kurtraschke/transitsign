@@ -15,6 +15,9 @@
  * @param buses Bus predictions
  */
 {template .predictions}
+{if length($buses) == 0}
+<div class="message">No predictions</div>
+{else}
 {foreach $bus in $buses}
 <div class="busprediction">
 <div class="minutes">{$bus.Minutes}<div class="mintag">minute{if $bus.Minutes > 1}s{/if}</div></div>       
@@ -31,4 +34,5 @@
 </div>
 </div>
 {/foreach}
+{/if}
 {/template}
