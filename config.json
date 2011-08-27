@@ -12,6 +12,10 @@
     "./plugins/frontends/bus.js",
     "./plugins/frontends/weather.js"
   ],
+  "sources_static": [
+    "./plugins/sources/wmata/stations.js",
+    "./plugins/sources/wmata/stops.js"
+  ],
   "sources": [
   {
     "name": "wmata/metrorail",
