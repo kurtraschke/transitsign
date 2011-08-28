@@ -28,6 +28,8 @@ Cities which have been tested and for which there are sample configurations:
   * BusTracker (uses the Clever API; need to write a generic module for it)
   * TrainTracker (proprietary API)
   * PACE (uses AVL from Trapeze (ex Siemens) which appears not to have an API)
+* Champaign-Urbana
+  * CUMTD bus predictions
 
 Cities which should work, but have not been tested:
 

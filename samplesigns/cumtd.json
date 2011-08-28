@@ -1,0 +1,20 @@
+{
+  "weather_id": "KCMI",
+  "slides": [
+    {
+      "type": "modules/bus",
+      "displayTime": 30,
+      "parameters": {"stops": [
+        {"Agency": "CUMTD",
+          "StopID": "IT:1"},
+        {"Agency": "CUMTD",
+          "StopID": "IT:2"},
+        {"Agency": "CUMTD",
+          "StopID": "IT:3"}
+      ],
+      "filter": 1,
+      "title": "Illinois Terminal",
+      "credit": "Data provided by Champaign‐Urbana Mass Transit District"}
+    }
+  ]
+}
