@@ -33,7 +33,7 @@ Cities which have been tested and for which there are sample configurations:
 
 Cities which should work, but have not been tested:
 
-* Any other city which uses NextBus or Connexionz for AVL
+* Any other city which uses NextBus, Connexionz, or BusTime for AVL
 * Any other city with a B-cycle or PBSC bike sharing system
 
 Cities which need coding done for one or more proprietary APIs:

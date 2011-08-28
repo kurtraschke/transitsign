@@ -1,7 +1,5 @@
 Server:
 
-* Capped collection for logs.
-* Add user interface for viewing logs.
 * Real-time stats: last fetch for each source, number of clients connected,
   number of calls per API per day, etc.
 * We should probably set an appropriate User-agent on requests.
@@ -37,7 +35,11 @@ Other data sources:
 * Weather forecast (http://www.weather.gov/forecasts/xml/)
 * Canadian weather (http://dd.weatheroffice.gc.ca/)
 * Australian weather (ftp://ftp2.bom.gov.au/anon/gen/fwo)
+* The UK Met Office does not release data.  There will be no weather for London.
 * FAA air traffic delays (might be good for intermodal transit centers
   at airports or which provide service to an airport):
   http://www.fly.faa.gov/flyfaa/xmlAirportStatus.jsp
+* Considering that MTA NYCT will probably be using SIRI or a SIRI-like API to
+  expose data from the full-scale Bus CIS project once it goes live, we should
+  probably support SIRI as a generic API. 
 * See CITIES for more on transit data sources.
