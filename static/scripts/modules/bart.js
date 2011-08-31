@@ -32,7 +32,7 @@ define(['jquery', 'marquee', 'soy', '../tools', './bart_template'],
            {predictions: [{hexcolor: '#FFFFFF',
                             destinationName: 'Destination',
                             minutes: 0}]},
-           6 * tools.emSize($('body')) //space for marquee
+           6.5 * tools.emSize($('body')) //space for marquee
            );
 
         self.updateTrains();

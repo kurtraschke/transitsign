@@ -60,7 +60,7 @@ define(['jquery', 'marquee', 'soy', './metrorail_template'],
 
         oneRow = $('.railpredictions tbody tr', this.div).outerHeight();
         empx = (10 * newsize) / 62.5;
-        estCrawlHeight = 6 * empx;
+        estCrawlHeight = 6.5 * empx;
         availableSpace = $(window).height() - $('#header').outerHeight() -
            $('.railpredictions', this.div).outerHeight() + oneRow -
            estCrawlHeight;

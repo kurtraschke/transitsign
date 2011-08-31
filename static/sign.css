@@ -49,10 +49,10 @@ body {
     padding-right: 0.5em;
 }
 
-.metrorail .lnbox {
+.rail .lnbox {
     float: left;
-    padding-top: 0.25em;
     padding-right: 0.25em;
+    padding-left: 0.25em;
     font-size: 4.5em;
 }
 
@@ -70,7 +70,7 @@ body {
     line-height: 1;
     position: relative;
     overflow: hidden;
-    height: 6em;
+    height: 6.5em;
 }
 
 .rail .incidents li {
@@ -83,7 +83,7 @@ body {
     font-size: 4.5em;
 }
 
-.metrorail .incidents li .lines {
+.incidents li .lines {
     display: none;
 }
 
