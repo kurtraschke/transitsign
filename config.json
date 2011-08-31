@@ -39,6 +39,10 @@
     "interval": 60
   },
   {
+    "name": "cta/alerts",
+    "interval": 120
+  },
+  {
     "name": "bus",
     "interval": 60,
     "parameters": [

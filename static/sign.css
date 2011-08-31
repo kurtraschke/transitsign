@@ -265,6 +265,58 @@ body {
     color: #F9E300;
 }
 
+.cta .colorblock.Red {
+    background-color: #C60C30;
+}
+
+.cta .colorblock.Blue {
+    background-color: #00A1DE;
+}
+
+.cta .colorblock.Brn {
+    background-color: #62361B;
+}
+
+.cta .colorblock.G {
+    background-color: #009B3A;
+}
+
+.cta .colorblock.Org {
+    background-color: #F9461C;
+}
+
+.cta .colorblock.P, .cta .colorblock.Pexp {
+    background-color: #522398;
+}
+
+.cta .colorblock.Pink {
+    background-color: #E27EA6;
+}
+
+.cta .colorblock.Y {
+    background-color: #F9E300;
+}
+
+.cta .colorblock {
+    height: 1em;
+    width: 0.5em;
+    display: inline-block;
+    position: relative;
+}
+
+.cta .exp {
+    -webkit-transform: rotate(90deg);
+    -webkit-transform-origin: 20% 70%;
+    -moz-transform: rotate(90deg);
+    -moz-transform-origin: 20% 70%;
+    display: inline-block;
+    font-size: 0.5em;
+    line-height: 0.5em;
+    position: absolute;
+    color: white;
+}
+
+
 .mbta .Red {
     color: #DC241F;
 }

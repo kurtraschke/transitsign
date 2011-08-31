@@ -11,6 +11,12 @@
 <tbody>
 </tbody>
 </table>
+
+<div class="ic">
+<div class="lnbox"></div>
+<ul class="incidents">
+</ul>
+</div>
 {/template}
 
 /**
@@ -63,4 +69,30 @@ Pink
 Yellow
 {/switch}
 </span>
+{/template}
+
+/**
+ * Render CTA rail incidents.
+ * @param incidents CTA rail incidents.
+ */
+{template .incidents}
+{foreach $incident in $incidents}
+<li><span class="lines">{call .services}{param services: $incident.ImpactedService.Service /}{/call} Alert: </span>{$incident.ShortDescription}</li>
+{/foreach}
+{/template}
+
+/**
+ * Render CTA lines in incident marquee.
+ * @param services CTA lines affected.
+ */
+{template .services private="true"}
+{foreach $service in $services}
+{if $service.ServiceType == 'R'}
+<span class="colorblock {$service.ServiceId|id}">
+{if $service.ServiceId == 'Pexp'}
+<span class="exp">EXP</span>
+{/if}
+</span>
+{/if}
+{/foreach}
 {/template}
