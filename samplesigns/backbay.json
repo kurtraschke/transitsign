@@ -1,0 +1,43 @@
+{
+  "weather_id": "KBOS",
+  "slides": [
+    {
+      "type": "modules/mbta-cr",
+      "displayTime": 30,
+      "parameters": {"stop": "Back Bay",
+                     "title": "Commuter Rail"}
+    },
+    {
+      "type": "modules/mbta",
+      "displayTime": 30,
+      "parameters": {"platformKeys": ["OBACN", "OBACS"],
+                     "filter": 1,
+                     "title": "Back Bay Station"}
+    },
+    {
+      "type": "modules/bus",
+      "displayTime": 30,
+      "parameters": {"stops": [
+        {"Agency": "MBTA",
+          "StopID": "176"},
+        {"Agency": "MBTA",
+          "StopID": "71855"},
+        {"Agency": "MBTA",
+          "StopID": "11384"},
+        {"Agency": "MBTA",
+          "StopID": "23391"}
+       ],
+      "filter": 1,
+      "oneCol": true,
+      "title": "Buses near here",
+      "credit": "Data provided by MassDOT"}
+    },
+    {
+      "type": "modules/bikeshare",
+      "displayTime": 15,
+      "parameters": {"system": "New Balance Hubway",
+                     "stations": ["16"],
+                     "title": "<span style=\"line-height: 1em; font-size:0.8em;\">New Balance Hubway</span>"}
+    }
+  ]
+}

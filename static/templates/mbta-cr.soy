@@ -1,0 +1,51 @@
+{namespace mbtacrTemplate}
+
+/**
+ * Render the MBTA commuter rail container.
+ */
+{template .main}
+<table class="railpredictions">
+<thead>
+  <tr><td><span class="train">Train</span></td><td></td><td><span class="time">Time</span></td></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<div class="credit">
+Data provided by MassDOT
+</div>
+{/template}
+
+/**
+ * Render MBTA commuter rail predictions.
+ * @param predictions MBTA predictions.
+ */
+{template .predictions}
+{foreach $prediction in $predictions}
+<tr>
+<td><span class="train">{$prediction.Trip}</span></td>
+<td class="line">{$prediction.Line} to<br>{$prediction.Destination}</td>
+<td><span class="time">{call .time}{param flag: $prediction.Flag /}{param time: $prediction.TimeString /}{/call}</span></td>
+</tr>
+{/foreach}
+{/template}
+
+/**
+ * Render train time.
+ * @param flag Prediction status flag.
+ * @param time Prediction time string.
+ */
+{template .time private="true"}
+{switch $flag}
+{case 'sch', 'pre'}
+{$time}
+{case 'app'}
+Approaching
+{case 'arr'}
+Arriving
+{case 'dep'}
+Departed
+{case 'del'}
+Delayed
+{/switch}
+{/template}

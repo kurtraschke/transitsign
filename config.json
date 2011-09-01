@@ -118,6 +118,10 @@
     "interval": 30
   },
   {
+    "name": "mbta/commuterrail",
+    "interval": 120
+  },
+  {
     "name": "weather",
     "interval": 1800
   }

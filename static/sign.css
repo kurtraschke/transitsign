@@ -334,3 +334,12 @@ body {
     text-align:center;
     font-size: 8em;
 }
+
+.mbtacr .line {
+    vertical-align: middle;
+    font-size: 0.6em;
+}
+
+.mbtacr .train, .mbtacr .time {
+    font-size: 1.2em;
+}
