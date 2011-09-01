@@ -23,8 +23,6 @@ define(['jquery', 'soy', '../tools', './mbta_template'],
            {predictions: [{Line: 'Blue', Destination: 'Bowdoin', min: 3}]},
            0);
 
-        socket.emit('subscribe mbta stop', this.parameters.platformKeys);
-
         self.updateTrains();
         setInterval(function() {self.updateTrains();}, 60000);
       }
