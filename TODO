@@ -15,6 +15,14 @@ Client:
   We may want to only display predictions with in a certain interval (one hour,
   for example), or otherwise improve formatting for distant predictions--show 
   them as "1:24" rather than "84 minutes" or "at 4:30" (using the absolute time).
+* If there's text in a bus prediction that is too long, it overflows
+  and ruins the layout, whether it's one column or two.
+  This would be helped by agencies not using destination names like
+  "South - 142 Avenue Rd Express towards Highway 401 - Extra Fare Required",
+  but for now we have to work around it.
+  For the record, the route destination does not need to contain the route
+  number and title, nor fare information.  The destination above could be 
+  revised as "South towards Highway 401" without losing information.
 * Fix reconnect bug (on reconnect, the initialization routine runs again,
   but it's not designed for that).
 * Related: the server should have a way to tell the client that data has
