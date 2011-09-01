@@ -34,7 +34,7 @@ define(['jquery', 'soy', '../tools', './bus_template'],
             {'buses': [{'Minutes': 10, 'Agency': 'Test Agency',
              'RouteID': 'Route', 'StopName': 'Stop Name',
              'DirectionText': 'Direction Text'}]},
-           $('.credit', div).outerHeight());
+           $('.credit', this.div).outerHeight(true));
 
         this.numBuses *= columns;
 
