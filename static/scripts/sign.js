@@ -1,5 +1,5 @@
-define(['jquery', 'cycle', 'strftime', 'socket', 'require', 'async'],
-       function($, _cycle, _strftime, _socket, require, _async) {
+define(['jquery', 'cycle', 'hotkeys', 'strftime', 'socket', 'require', 'async'],
+       function($, _cycle, _hotkeys, _strftime, _socket, require, _async) {
 
       function updateWX(socket) {
         socket.emit('get weather', function(response) {
@@ -95,7 +95,19 @@ define(['jquery', 'cycle', 'strftime', 'socket', 'require', 'async'],
                  slideResize: 0,
                  before: onBefore,
                  timeoutFn: findTimeout
-               });}
+               });
+
+               $(document).bind('keydown', 'space', function() {
+                 slidecontainer.cycle('toggle');
+               });
+               $(document).bind('keydown', 'left', function() {
+                 slidecontainer.cycle('prev');
+               });
+               $(document).bind('keydown', 'right', function() {
+                 slidecontainer.cycle('next');
+               });
+
+             }
            });
       }
 
