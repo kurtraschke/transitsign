@@ -75,7 +75,7 @@ define(['jquery', 'marquee', 'soy', '../tools', './cta_template'],
 
       CTASlide.prototype.updateIncidents = function() {
         var self = this;
-        this.socket.emit('get cta incidents',
+        this.socket.emit('get cta incidents', this.parameters.mapid,
            function(response) {self.setIncidents(response);});
       };
 

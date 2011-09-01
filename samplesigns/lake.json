@@ -1,0 +1,23 @@
+{
+  "weather_id": "KORD",
+  "slides": [
+    {
+      "type": "modules/cta",
+      "displayTime": 30,
+      "parameters": {"mapid": "41660", "filter": 1, 
+                     "title":"Lake"
+                    }
+    },
+    {
+      "type": "modules/bus",
+      "displayTime": 30,
+      "parameters": {"stops": [
+        {"Agency": "CTA",
+          "StopID": "1437"}
+      ],
+      "filter": 1,
+      "title": "Buses near here",
+      "credit": "Data provided by Chicago Transit Authority."}
+    }
+  ]
+}

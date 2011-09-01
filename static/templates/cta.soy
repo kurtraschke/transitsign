@@ -87,7 +87,7 @@ Yellow
  */
 {template .services private="true"}
 {foreach $service in $services}
-{if ($service.ServiceType == 'R' or ($service.ServiceType == 'X' and ($service.ServiceName == 'Systemwide' or $service.ServiceName == 'Train')))}
+{if $service.ServiceType == 'R'}
 <span class="colorblock {$service.ServiceId|id}">
 {if $service.ServiceId == 'Pexp'}
 <span class="exp">EXP</span>

@@ -88,7 +88,7 @@ ctaTemplate.services = function(opt_data, opt_sb) {
   var serviceListLen57 = serviceList57.length;
   for (var serviceIndex57 = 0; serviceIndex57 < serviceListLen57; serviceIndex57++) {
     var serviceData57 = serviceList57[serviceIndex57];
-    output.append((serviceData57.ServiceType == 'R' || serviceData57.ServiceType == 'X' && (serviceData57.ServiceName == 'Systemwide' || serviceData57.ServiceName == 'Train')) ? '<span class="colorblock ' + serviceData57.ServiceId + '">' + ((serviceData57.ServiceId == 'Pexp') ? '<span class="exp">EXP</span>' : '') + '</span>' : '');
+    output.append((serviceData57.ServiceType == 'R') ? '<span class="colorblock ' + serviceData57.ServiceId + '">' + ((serviceData57.ServiceId == 'Pexp') ? '<span class="exp">EXP</span>' : '') + '</span>' : '');
   }
   if (!opt_sb) return output.toString();
 };
