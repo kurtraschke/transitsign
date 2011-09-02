@@ -1,9 +1,10 @@
 {
   "listenport": 8000,
   "db": {"host": "localhost", "port": 27017, "db": "transitsign"},
-  "keyFile": "keys.json",
+  "keyfile": "keys.json",
   "frontends": [
     "./plugins/frontends/config.js",
+    "./plugins/frontends/logs.js",
     "./plugins/frontends/bikeshare.js",
     "./plugins/frontends/metrorail.js",
     "./plugins/frontends/bart.js",
