@@ -53,7 +53,7 @@ require(
       }
 
       function doAutomaticUpdate(socket, logLevel, logFilter) {
-        var lastID = $('#logs tbody tr').first().attr('id');
+        var lastID = $('#logs > tbody > tr').first().attr('id');
 
         socket.emit('get logs', logLevel, null, logFilter,
                     lastID, function(logs) {
@@ -62,7 +62,7 @@ require(
                 logEntry.timestampHTML = timestampFromID(logEntry['_id']);
               }
 
-              $('#logs tbody').prepend(logsTemplate.logs({'logs': logs}));
+              $('#logs > tbody').prepend(logsTemplate.logs({'logs': logs}));
 
               for (var i = 0; i < logs.length; i++) {
                 var logEntry = logs[i];
