@@ -1,5 +1,5 @@
-define(['jquery', 'marquee', 'soy', './metrorail_template'],
-       function(_jquery, _marquee, _soy, _template) {
+define(['jquery', 'marquee', 'soy', '../tools', './metrorail_template'],
+       function(_jquery, _marquee, _soy, tools, _template) {
 
       MetrorailSlide.instanceCount = 1;
 
@@ -21,13 +21,7 @@ define(['jquery', 'marquee', 'soy', './metrorail_template'],
         $(div).attr('id', this.name).addClass('metrorail').addClass('rail');
 
         soy.renderElement(div, metrorailTemplate.main, {});
-        soy.renderElement($('.railpredictions tbody', this.div)[0],
-           metrorailTemplate.predictions,
-           {'predictions': [{'Line': 'RD',
-             'Car': '8',
-             'DestinationName': 'Franconia-Springfield',
-             'Min': 'ARR'}]});
-
+        
         this.marquee = $('.incidents', this.div);
 
         soy.renderElement(this.marquee[0], metrorailTemplate.incidents,
@@ -48,25 +42,16 @@ define(['jquery', 'marquee', 'soy', './metrorail_template'],
 
         this.marquee.data('state', 'running');
 
-        var newsize, dh, oneRow, empx, estCrawlHeight,
-           availableSpace, error;
-
-        newsize = (($(window).width() / $('.railpredictions',
-           this.div).outerWidth()) * 95);
-        $(div).css('font-size', newsize + '%');
-
-        dh = $('.railpredictions thead tr td:nth-child(3)', this.div);
-        dh.css('width', dh.innerWidth());
-
-        oneRow = $('.railpredictions tbody tr', this.div).outerHeight();
-        empx = (10 * newsize) / 62.5;
-        estCrawlHeight = 6.5 * empx;
-        availableSpace = $(window).height() - $('#header').outerHeight() -
-           $('.railpredictions', this.div).outerHeight() + oneRow -
-           estCrawlHeight;
-
-        this.numTrains = Math.floor(availableSpace / oneRow);
-
+        this.numTrains = tools.autoSizer(
+           $('.railpredictions tbody', self.div)[0],
+           metrorailTemplate.predictions,
+           {'predictions': [{'Line': 'RD',
+             'Car': '8',
+             'DestinationName': 'Franconia-Springfield',
+             'Min': 'ARR'}]},
+           6.5 * tools.emSize($('body')) //space for marquee
+           );
+        
 
         if (self.parameters.auto === true) {
           socket.emit('get metrorail information',
