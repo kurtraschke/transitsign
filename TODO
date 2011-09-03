@@ -9,6 +9,8 @@ Client:
 * High priority: better font.  Helvetica may seem appropriate, but it's 
   actually bad for signage applications like this as it's prone to halation
   problems.  We'll try Droid Sans for now.
+* We need better icons for rail services, to differentiate commuter rail
+  from subways from trams.
 * Time format should be customizable.
 * Weather should be made generic (see discussion of sources, below).
 * Presently we display as many bus predictions as will fit, regardless of time.
