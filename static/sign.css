@@ -3,7 +3,6 @@ body {
     font-size: 62.5%;
     background: black;
     color: white;
-
 }
 
 #slidecontainer > div {
@@ -29,7 +28,7 @@ body {
 }
 
 .rail table {
-    font-size: 6em;
+    font-size: 8em;
 }
 
 .metrorail .dest {
@@ -37,7 +36,7 @@ body {
     white-space: nowrap;
 }
 
-.rail table td:not(:first-child) {
+.rail td:not(:first-child) {
     padding-left: 0.8em;
 }
 
@@ -45,7 +44,7 @@ body {
     padding-right: 0.8em;
 }
 
-.rail thead tr td:last-child {
+.rail td:last-child {
     padding-right: 0.5em;
 }
 
@@ -234,6 +233,10 @@ body {
     margin-bottom: 1em;
 }
 
+.cta table {
+    font-size: 7em;
+}
+
 .cta .Red {
     color: #C60C30;
 }
@@ -299,7 +302,7 @@ body {
 }
 
 .cta .colorblock {
-    height: 1em;
+    height: 0.8em;
     width: 0.5em;
     display: inline-block;
     position: relative;
@@ -311,8 +314,8 @@ body {
     -moz-transform: rotate(90deg);
     -moz-transform-origin: 20% 70%;
     display: inline-block;
-    font-size: 0.5em;
-    line-height: 0.5em;
+    font-size: 0.45em;
+    line-height: 0.45em;
     position: absolute;
     color: white;
 }
@@ -333,6 +336,10 @@ body {
 .message {
     text-align:center;
     font-size: 8em;
+}
+
+.mbtacr table {
+    font-size: 6em;
 }
 
 .mbtacr .line {
