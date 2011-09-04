@@ -182,12 +182,8 @@ function($, _jqueryui, _cookies, _cycle, _hotkeys,
     doTopRight();
     sizeDialog();
     var socket = io.connect();
-
+    
     socket.on('connect', function() {
-      //This gets called when we reconnect as well;
-      //take heed!
-      console.log('connected');
-
       var signName = window.location.hash.substr(1);
 
       socket.emit('get config', signName, function(config) {
@@ -197,7 +193,14 @@ function($, _jqueryui, _cookies, _cycle, _hotkeys,
 
     socket.on('disconnect', function() {
       $('body').html('<div class="message">Sign disconnected.</div>');
+      //TODO: we should periodically check to see if the server has
+      //come back up, and if so, reload.
     });
+    
+    socket.on('reconnect', function() {
+      location.reload();
+    });
+    
     socket.on('error', function(err) {
       console.log(err);
     });

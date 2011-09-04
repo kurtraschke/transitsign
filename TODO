@@ -25,8 +25,6 @@ Client:
   For the record, the route destination does not need to contain the route
   number and title, nor fare information.  The destination above could be 
   revised as "South towards Highway 401" without losing information.
-* Fix reconnect bug (on reconnect, the initialization routine runs again,
-  but it's not designed for that).
 * Related: the server should have a way to tell the client that data has
   gone stale.
 * Improve configuration mechanism: we now store the configuration in
