@@ -10,7 +10,8 @@ Client:
   actually bad for signage applications like this as it's prone to halation
   problems.  We'll try Droid Sans for now.
 * We need better icons for rail services, to differentiate commuter rail
-  from subways from trams.
+  from subways from trams.  Hopefully some good will come of this:
+  http://iconathon.org/content/new-york-city
 * Time format should be customizable.
 * Weather should be made generic (see discussion of sources, below).
 * Presently we display as many bus predictions as will fit, regardless of time.
@@ -25,8 +26,6 @@ Client:
   For the record, the route destination does not need to contain the route
   number and title, nor fare information.  The destination above could be 
   revised as "South towards Highway 401" without losing information.
-* Related: the server should have a way to tell the client that data has
-  gone stale.
 * Improve configuration mechanism: we now store the configuration in
   MongoDB, which is a good step, but we also need a GUI configurator
   to generate the configuration documents and save them to the database.
@@ -35,6 +34,8 @@ Both:
 
 * Only update services when they are actually operating;
   communicate on the sign when the last train has gone, etc.
+* Track the last update for each source, and communicate to the sign
+  that the data has gone stale.
 
 Other data sources:
 
