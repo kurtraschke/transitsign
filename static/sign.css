@@ -31,6 +31,10 @@ body {
     font-size: 8em;
 }
 
+.metrorail table {
+    font-size: 7.4em;
+}
+
 .metrorail .dest {
     font-size: 0.7em;
     white-space: nowrap;
@@ -234,7 +238,7 @@ body {
 }
 
 .cta table {
-    font-size: 7em;
+    font-size: 6.5em;
 }
 
 .cta .Red {
