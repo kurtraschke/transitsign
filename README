@@ -1,5 +1,0 @@
-1.  Edit config.json to comment out data sources as needed.
-2.  Set API keys as needed in keys.json (copy keys-example.json)
-3.  For each sign configuration, run: ./bin/setsignconfig config.json <sign_name> <sign_config>.json
-4.  Run ./bin/transitsign config.json
-5.  Load http://localhost:8000/sign.html#<sign_name>
