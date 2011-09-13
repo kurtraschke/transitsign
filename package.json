@@ -10,7 +10,7 @@
     "url": "git://github.com/kurtraschke/transitsign.git"
   },
   "engines": {
-    "node": "v0.4.11"
+    "node": ">=0.4.10 <0.5.0"
   },
   "dependencies": {"async": "0.1.9",
                    "express": "2.4.4",
@@ -23,5 +23,5 @@
                    "winston-mongodb": "0.3.0"},
   "devDependencies": {},
   "directories": {"lib": "lib"},
-  "scripts": { "start": "bin/transitsign config.json" }
+  "scripts": { "start": "bin/transitsign server-config.json" }
 }
