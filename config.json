@@ -1,7 +1,6 @@
 {
-  "listenport": 8000,
+  "listenport": 8001,
   "db": {"host": "localhost", "port": 27017, "db": "transitsign"},
-  "keyfile": "keys.json",
   "frontends": [
     "./plugins/frontends/config.js",
     "./plugins/frontends/logs.js",

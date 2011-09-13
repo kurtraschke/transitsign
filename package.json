@@ -22,5 +22,6 @@
                    "winston": "0.4.0",
                    "winston-mongodb": "0.3.0"},
   "devDependencies": {},
-  "directories": {"lib": "lib"}
+  "directories": {"lib": "lib"},
+  "scripts": { "start": "bin/transitsign config.json" }
 }
