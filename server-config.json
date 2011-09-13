@@ -1,5 +1,5 @@
 {
-  "listenport": 8001,
+  "listenport": 80,
   "db": {"host": "localhost", "port": 27017, "db": "transitsign"},
   "frontends": [
     "./plugins/frontends/config.js",
