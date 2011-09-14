@@ -20,7 +20,8 @@
                    "socket.io": "0.8.x",
                    "xml2js": "0.1.9",
                    "winston": "0.4.0",
-                   "winston-mongodb": "0.3.0"},
+                   "winston-mongodb": "0.3.0"
+                   "optimist": "0.2.6"},
   "devDependencies": {},
   "directories": {"lib": "lib"},
   "scripts": { "start": "bin/transitsign server-config.json" }
