@@ -1,23 +1,42 @@
+======================
 ``transitsign`` README
-----------------------
+======================
 
 Getting started
 ===============
 
 Requires MongoDB > 2.0.0 (default configuration is fine).
 
-0. Install dependencies with ``npm install .``
-1. Edit ``config.json`` to comment out data sources as needed
-2. Set API keys as needed in ``keys.json`` (copy ``keys-example.json``)
-3. For each sign configuration, run: ``./bin/setsignconfig config.json <sign_name> <sign_config>.json`` (ex: ``./bin/setsignconfig rosslyn samplesigns/rosslyn.json``)
-4. Run ``./bin/transitsign config.json``
-5. Load ``http://localhost:8000/sign.html#<sign_name>`` in a WebKit browser (Chrome and Safari have been tested)
-6. If size is insufficient:
+#. Install dependencies with ``npm install .``
+#. Edit ``server-config.json`` to comment out data sources as needed
+#. Set API keys
 
-   1. Click in the browser window and push ``s``
-   2. Adjust size in the dialog that appears and click "OK"
-   3. Reload for auto-sizing to take effect
+   * Possible key names are:
 
+     * ``BART``
+     * ``WMATA``
+     * ``TriMet``
+     * ``CTARail``
+     * ``CTABus``
+     * ``CUMTD``
+
+   * To set a key, run ``npm config set transitsign:_key-BART MW9S-E7SL-26DU-VV8V``,
+     replacing ``BART`` with a key name from the list above, and the
+     key with your assigned key. *(The BART key given here is safe to
+     use and disclose, as it's the demo key.)*
+
+#. Run ``./bin/loadstaticdata.js``
+#. Run ``./bin/setsignconfig.js --all``
+#. Run ``./bin/transitsign.js server-config.json``
+#. Load ``http://localhost:8000/sign.html#<sign_name>`` in a WebKit browser (Chrome and Safari have been tested)
+
+
+Adjusting sign size
+-------------------
+
+1. Click in the browser window and type ``s``
+2. Adjust size in the dialog that appears and click "OK"
+3. Reload for auto-sizing to take effect
 
 Finding things in the codebase
 ==============================
