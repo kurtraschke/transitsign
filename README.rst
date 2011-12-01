@@ -14,9 +14,9 @@ Requires MongoDB > 2.0.0 (default configuration is fine).
 5. Load ``http://localhost:8000/sign.html#<sign_name>`` in a WebKit browser (Chrome and Safari have been tested)
 6. If size is insufficient:
 
-  1. Click in the browser window and push ``s``
-  2. Adjust size in the dialog that appears and click "OK"
-  3. Reload for auto-sizing to take effect
+   1. Click in the browser window and push ``s``
+   2. Adjust size in the dialog that appears and click "OK"
+   3. Reload for auto-sizing to take effect
 
 
 Finding things in the codebase
