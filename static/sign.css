@@ -155,7 +155,6 @@ body {
 #header {
     padding-bottom: 0.5em;
     font-size: 6em;
-
 }
 
 #icons {
@@ -353,4 +352,9 @@ body {
 
 .mbtacr .train, .mbtacr .time {
     font-size: 1.2em;
+}
+
+.notice {
+    text-align: center;
+    font-size: 8em;
 }
