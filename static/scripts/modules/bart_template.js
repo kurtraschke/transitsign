@@ -39,6 +39,6 @@ bartTemplate.incidents = function(opt_data, opt_sb) {
 
 bartTemplate.time = function(opt_data, opt_sb) {
   var output = opt_sb || new soy.StringBuilder();
-  output.append((opt_data.time == -1) ? 'Arrived' : soy.$$escapeHtml(opt_data.time));
+  output.append((opt_data.time == -1) ? 'Leaving' : soy.$$escapeHtml(opt_data.time));
   if (!opt_sb) return output.toString();
 };
