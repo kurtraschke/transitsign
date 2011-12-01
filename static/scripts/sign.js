@@ -183,7 +183,12 @@ function($, _jqueryui, _cookies, _cycle, _hotkeys,
     sizeDialog();
     var socket = io.connect();
     
+    socket.on('error', function(error) {
+        console.log(error);
+    });
+    
     socket.on('connect', function() {
+      console.log('connected');
       var signName = window.location.hash.substr(1);
 
       socket.emit('get config', signName, function(config) {
@@ -192,17 +197,15 @@ function($, _jqueryui, _cookies, _cycle, _hotkeys,
     });
 
     socket.on('disconnect', function() {
+      console.log('disconnected');
       $('body').html('<div class="message">Sign disconnected.</div>');
       //TODO: we should periodically check to see if the server has
       //come back up, and if so, reload.
     });
     
     socket.on('reconnect', function() {
+      console.log('reconnected');
       location.reload();
-    });
-    
-    socket.on('error', function(err) {
-      console.log(err);
     });
   }
   return function() {
