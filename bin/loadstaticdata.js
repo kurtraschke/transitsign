@@ -14,15 +14,19 @@ var config = JSON.parse(minify(fs.readFileSync(process.argv[2]).toString()));
 var db = mongo.db(config.db.host + ':' + config.db.port + '/' +
                   config.db.db);
 
-keymaster.importKeys(config.keyFile);
+keymaster.importKeysEnv();
 
 var sources = config.sources_static;
 
 async.forEachSeries(sources,
                     function(item, callback) {
-                        console.log(item);
-                        require("../lib/"+item)(db, callback);
+                      console.log(item);
+                      require("../lib/"+item)(db, callback);
                     }, function(error) {
+                      if (error) {
                         console.log(error);
+                        process.exit(-1);
+                      } else {
                         process.exit(0);
+                      }
                     });
