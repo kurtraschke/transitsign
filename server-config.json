@@ -3,7 +3,6 @@
   "db": {"host": "localhost", "port": 27017, "db": "transitsign"},
   "frontends": [
     "./plugins/frontends/config.js",
-    "./plugins/frontends/logs.js",
     "./plugins/frontends/bikeshare.js",
     "./plugins/frontends/metrorail.js",
     "./plugins/frontends/bart.js",
