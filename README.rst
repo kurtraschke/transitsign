@@ -25,7 +25,6 @@ Requires MongoDB > 2.0.0 (default configuration is fine).
      key with your assigned key. *(The BART key given here is safe to
      use and disclose, as it's the demo key.)*
 
-#. Run ``npm run-script loadstaticdata``
 #. Run ``npm run-script loadsigns``
 #. Run ``npm start``
 #. Load ``http://localhost:8000/sign.html#<sign_name>`` in a WebKit browser (Chrome and Safari have been tested)

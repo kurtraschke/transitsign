@@ -14,8 +14,7 @@
   ],
   "sources_static": [
     "./plugins/sources/wmata/stations.js",
-    "./plugins/sources/wmata/stops.js",
-    "./plugins/sources/cumtd/stops.js"
+    "./plugins/sources/wmata/stops.js"
   ],
   "sources": [
   {
