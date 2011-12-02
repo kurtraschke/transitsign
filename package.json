@@ -24,8 +24,7 @@
                    "optimist": "0.2.6"},
   "devDependencies": {},
   "directories": {"lib": "lib"},
-  "bin": {"transitsign": "./bin/transitsign.js",
-          "ts-setsignconfig": "./bin/setsignconfig.js",
-          "ts-loadstaticdata": "./bin/loadstaticdata.js"},
-  "scripts": { "start": "node ./bin/transitsign.js server-config.json" }
+  "scripts": { "start": "node ./bin/transitsign.js server-config.json",
+               "loadstaticdata": "node ./bin/loadstaticdata.js server-config.json",
+               "loadsigns": "node ./bin/loadsigns.js --all"}
 }
